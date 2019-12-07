@@ -1,0 +1,9 @@
+<h1> aaaaa</h1>
+
+<%= form_for(@product, url: products_path) do |product| %>
+
+<%= attachment_image_tag product, :product_image, :product_image, :fill, 50,50, format: "jpeg", class: "pull-left profile-img", fallback: "no_image.jpg", :width => "40", :height => "40" %>
+
+<%= product.name %>
+
+<% end %>
