@@ -45,11 +45,11 @@ ActiveRecord::Schema.define(version: 2019_12_07_074320) do
   end
 
   create_table "products", force: :cascade do |t|
-    t.integer "category_id"
+    t.text "product_image"
     t.string "product_name"
     t.text "caption"
+    t.integer "category_id"
     t.integer "tax_excluded"
-    t.text "product_image"
     t.string "sale_status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
