@@ -1,5 +1,5 @@
 
-<%= form_for(@product,url:'/products/index') do |f| %>
+<%= form_for(@product,url:admin_products_path) do |f| %>
 
 <h2>商品　新規登録画面</h2>
   <%= f.attachment_field :product_image %>
