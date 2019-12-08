@@ -12,10 +12,17 @@
 				<tr>
 					<td>
 					<%= link_to product_path(product.id) do %>
-						<%= attachment_image_tag, :product_image, :fill, 70, 70, fallback: "no_image.jpg", size: "70x70", class: "" %>
+						<%= attachment_image_tag product, :product_image, :fill, 100, 100 %>
 					<% end %>
 					</td>
+					<td>
+						<%= product.product_name %>　
+					</td>
+					<td>
+						<%= product.tax_excluded %>円
+					</td>
 				</tr>
+				<% end %>
 			</tbody>
 		</table>
 	</div>
