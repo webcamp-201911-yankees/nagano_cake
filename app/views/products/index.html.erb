@@ -1,2 +1,22 @@
-<h1>Products#index</h1>
-<p>Find me in app/views/products/index.html.erb</p>
+<div class="container">
+	<div class="row">
+
+		<div class="main_visual">
+			main_visual
+		</div>
+
+		<h2>商品一覧</h2>
+		<table>
+			<tbody>
+				<% @products.each do |product| %>
+				<tr>
+					<td>
+					<%= link_to product_path(product.id) do %>
+						<%= attachment_image_tag, :product_image, :fill, 70, 70, fallback: "no_image.jpg", size: "70x70", class: "" %>
+					<% end %>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
