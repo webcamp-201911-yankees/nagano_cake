@@ -1,0 +1,13 @@
+<h2>配送先編集</h2>
+  <div class="row">
+    <%= form_for(@shipping_address) do |f| %>
+      <h4>郵便番号</h4>
+      <%= f.text_field :shipping_zipcode ,class:"col-xs-12"%>
+      <h4>住所</h4>
+      <%= f.text_field :shipping_address ,class:"col-xs-12"%>
+      <h4>住所宛先</h4>
+      <%= f.text_field :name ,class:"col-xs-12"%>
+ 
+      <%= f.submit '編集する',class:"col-xs-12 btn btn-primary"%>
+ 
+    <% end %>
