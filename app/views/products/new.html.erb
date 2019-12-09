@@ -1,0 +1,30 @@
+
+<%= form_for(@product,url:'/products') do |f| %>
+
+<h2>商品　新規登録画面</h2>
+  <%= f.attachment_field :product_image %>
+
+  <h4>商品名</h4>
+  <%= f.text_field :name %>
+
+  <h4>商品説明</h4>
+  <%= f.text_area :caption %>
+
+  <h4>ジャンル</h4>
+  <select name="categories" required>
+  	<option value="">-- 選択してください --</option>
+  	<option value="ケーキ">ケーキ</option>
+  	<option value="焼き菓子">焼き菓子</option>
+  	<option value="チョコレート">チョコレート</option>
+  	<option value="和菓子">和菓子</option>
+  	<option value="アイス">アイス</option>
+   </select>
+
+  <h4>税抜価格</h4>
+  <p><%= f.text_field :tax_excluded %>円</p>
+
+  <h4>販売ステータス</h4>
+
+  <%= f.submit "新規登録" %>
+
+<% end %>
