@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  # namespace :admin do
+  #   get 'customer/show'
+  #   get 'customer/edit'
+  # end
   resources :products
 
   resources :shipping_addresses
