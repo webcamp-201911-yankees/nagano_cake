@@ -1,0 +1,46 @@
+<h1>商品詳細</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4">
+            <%= attachment_image_tag @product, :product_image, :fill, 300,300, format: "jpeg", class: "pull-left profile-img", fallback: "no_image.jpg", :width => "300", :height => "300" %>
+        </div>
+        <div class="col-lg-8">
+            <table>
+                <tr>
+                    <td><label>商品名</label></td>
+                    <td>
+                        <%= @product.product_name %>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>商品説明</label></td>
+                    <td>
+                        <%= @product.caption %>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>ジャンル</label></td>
+                    <td>
+                        <!-- 後で修正 -->
+                        <p>ケーキ</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>税込価格(税抜価格)</label></td>
+                    <td>
+                         <%= @product.tax_excluded %>
+                        (<%= @product.tax_excluded*1.1 %>)　円
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>販売ステータス</label></td>
+                    <td>
+                        <!-- 後で修正 -->
+                        <p>販売中</p>
+                    </td>
+                </tr>
+            </table>
+                <%= link_to '編集する', edit_admin_product_path(@product.id), class: "btn btn-primary" %>
+        </div>
+    </div>
+</div>

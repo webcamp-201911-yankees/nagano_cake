@@ -8,8 +8,17 @@ class ProductsController < ApplicationController
   def edit
   end
 
+  def update
+    product = Product.find(params[:id])
+    if product.update(product_params)
+      redirect_to admin_product_path(product.id)
+    else
+      redirect_to admin_products_path
+    end
+  end
 
   def show
+    @product = Product.find(params[:id])
   end
 
   private
