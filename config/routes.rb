@@ -1,27 +1,31 @@
 Rails.application.routes.draw do
 
-  # namespace :admin do
-  #   get 'customer/show'
-  #   get 'customer/edit'
-  # end
+  devise_for :customers, controllers: {
+    sessions: 'customers/sessions',
+    registrations: 'customers/registrations',
+    passwords: 'customers/passwords'
+  }
 
-  resources :products
+  devise_for :admins, admins: {
+    sessions: 'admins/sessions',
+    registrations: 'admins/registrations',
+    passwords: 'admins/passwords'
+  }
+
   resources :customers
 
-  resources :shipping_addresses
+  resources :products
 
-  devise_for :admins
+  resources :shipping_addresses
 
   namespace :admin do
     resources :products
     resources :customers
   end
 
-  devise_for :customers, controllers: {
-    sessions: 'customers/sessions',
-    registrations: 'customers/registrations',
-    passwords: 'customers/passwords'
-  }
+
+
+
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
