@@ -1,0 +1,19 @@
+<h4>注文履歴一覧</h4>
+
+<% @order_index.each do |order_index| %>
+<table border="1">
+	<tr>
+		<th>注文日</th>
+		<th>配送先</th>
+		<th>注文商品</th>
+		<th>支払い金額</th>
+		<th>注文詳細</th>
+	</tr>
+	<tr>
+		<td><%= order_index.created_at %></td>
+		<td><%= order_index.address %></td>
+		<td><%= order_details(product_id).product_name%></td>
+		<td><%= order_index.total_price %></td>
+		<td><%= link_to "表示する", order_history_path class:'btn btn-md btn-primary' %></td>
+	</tr>
+<% end %>
