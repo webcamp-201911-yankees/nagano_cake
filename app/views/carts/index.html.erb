@@ -1,23 +1,25 @@
-<h2>ショッピングカート</h2>
+<h2>ショッピングカート</h2>]
 
-  <table class="table table-hover">
-    <tbody>
-      <tr>
-        <th>商品名</th>
-        <th>単価（税込）</th>
-        <th>数量</th>
-        <th></th>
-        <th></th>
-      </tr>
-    <% @carts.each do |cart| %>
-      <tr>
-        <td><%= cart.product.product_name %></td>
-        <td><%= cart.product.tax_excluded %></td>
-        <td><%= cart.number %></td>
-        <td><button type="button" class="btn btn-success btn-sm">
-
-          </button></td>
-      </tr>
-     <% end %>
-    </tbody>
-  </table>
+    <table class="table table-hover">
+      <tbody>
+        <tr>
+          <th>商品名</th>
+          <th>単価（税込）</th>
+          <th>数量</th>
+          <th></th>
+          <th></th>
+        </tr>
+      <% @carts.each do |cart| %>
+        <tr>
+          <td><%= cart.product.product_name %></td>
+          <td><%= cart.product.tax_excluded %></td>
+          <td><%= form_for(cart,url:cart_path(cart), html: {method: "patch"}) do |f| %>
+              <%= f.text_field :number %></td>
+          <td><%= f.submit "数量を変える" %></td>
+              <% end %>
+          <td><button type="button" class="btn btn-success btn-sm"></button></td>
+        </tr>
+       <% end %>
+      </tbody>
+    </table>
+  <%= link_to '情報入力へ進む', new_order_history_path, class: "btn btn-primary" %>
