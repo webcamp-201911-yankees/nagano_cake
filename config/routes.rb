@@ -19,6 +19,8 @@ Rails.application.routes.draw do
 
   resources :shipping_addresses
 
+  resources :carts, only: [:index,:create,:update,:destroy,]
+
 
   namespace :admin do
     resources :products
