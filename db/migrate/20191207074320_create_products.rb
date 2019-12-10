@@ -6,7 +6,7 @@ class CreateProducts < ActiveRecord::Migration[5.2]
     	t.text :caption
     	t.integer :category_id
     	t.integer :tax_excluded
-    	t.string :sale_status
+    	t.integer :sale_status
 
       t.timestamps
     end
