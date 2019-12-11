@@ -1,3 +1,4 @@
+<%= render 'layouts/c_header' %>
 <h1>Products#show</h1>
 <p>Find me in app/views/products/show.html.erb</p>
 
@@ -18,7 +19,7 @@
             <h2><%= @product.product_name %></h2>
             <h4>商品説明</h4>
             <%= @product.caption %>
-            <h2>¥<%= @product.tax_excluded*1.1.floor %>(税込)</h2>
+            <h2>¥<%= (@product.tax_excluded*1.1).floor %>(税込)</h2>
             <select>
                 <option value="">-- 個数選択 --</option>
                 <option value="ケーキ">ケーキ</option>

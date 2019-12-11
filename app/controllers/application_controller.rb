@@ -4,10 +4,10 @@ class ApplicationController < ActionController::Base
 	def after_sign_up_path_for(resource)
 		case resource
 		when Admin
-		"/admin/products/new"#サインアップ後に移動するpath
+		"/admin/products"#サインアップ後に移動するpath
 		# flash[:signedup] ="Welcome! You have signed up successfully."
 		when Customer
-		"/customers/#{current_customer.id}"#サインアップ後に移動するpath
+		"/products"#サインアップ後に移動するpath
 		# flash[:signedup] ="Welcome! You have signed up successfully."
 		end
 	end
@@ -15,10 +15,10 @@ class ApplicationController < ActionController::Base
 	def after_sign_in_path_for(resource)
 		case resource
 		when Admin
-		"/admin/products/new"#ログイン後に移動するpath
+		"/admin/products"#ログイン後に移動するpath
 		# flash[:signedup] ="Welcome! You have signed up successfully."
 		when Customer
-		"/customers/#{current_customer.id}"#ログイン後に移動するpath
+		"/products"#ログイン後に移動するpath
 		# flash[:signedin] ="Signed in successfully."
 		end
 	end

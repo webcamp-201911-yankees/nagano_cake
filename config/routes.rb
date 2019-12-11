@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     passwords: 'customers/passwords'
   }
 
-  devise_for :admins, admins: {
+  devise_for :admins, controllers: {
     sessions: 'admins/sessions',
     registrations: 'admins/registrations',
     passwords: 'admins/passwords'
