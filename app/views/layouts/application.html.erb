@@ -1,15 +1,109 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <title>NaganoCake</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+</head>
 
-  <body>
+<body>
+    <nav class="navbar-inverse">
+        <!-- //navbarを加えると、枠が丸くなる -->
+        <div class="container-fluid">
+            <div class="navbar">
+                <div class="navbar-brand">
+                    <p>ながのCAKE</p>
+                </div>
+                <% if  customer_signed_in? %>
+                <!-- 右寄せになる部分 ================ -->
+                <ul class="nav navbar-nav navbar-right">
+                    <!-- リンクのみ -->
+                    <li>
+                        <%= link_to new_customer_registration_path, class: 'btn-block' do %><span class="glyphicon glyphicon-user" aria-hidden="true">
+                            <%= current_customer.last_name %>
+                            <%= current_customer.first_name %>
+                        </span>
+                        <% end %>
+                    </li>
+                    <li>
+                        <%= link_to new_customer_registration_path, class: 'btn-block' do %><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"> Cart</span>
+                        <% end %>
+                    </li>
+                    <li>
+                        <%= link_to destroy_customer_session_path, method: :delete, class: "btn-block" do %><span class="glyphicon glyphicon-edit" aria-hidden="true"> カスタマーlogout</span>
+                        <% end %>
+                    </li>
+                </ul>
+                <% else %>
+                <ul class="nav navbar-nav navbar-right">
+                    <!-- リンクのみ -->
+                    <li>
+                        <%= link_to new_customer_registration_path, class: 'btn-block' do %><span class="glyphicon glyphicon-user" aria-hidden="true"> Guest</span>
+                        <% end %>
+                    </li>
+                    <li>
+                        <%= link_to new_customer_registration_path, class: 'btn-block' do %><span class="glyphicon glyphicon-edit" aria-hidden="true"> Sign-up</span>
+                        <% end %>
+                    </li>
+                    <li>
+                        <%= link_to new_customer_session_path, class: 'btn-block' do %><span class="glyphicon glyphicon-log-in" aria-hidden="true"> login</span>
+                        <% end %>
+                    </li>
+                </ul>
+                <% end %>
+                <!----------------------------admin--------------------------------->
+                <% if admin_signed_in? %>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="">
+                        <%= link_to "商品一覧", admin_products_path %>
+                    </li>
+                    <li class="">
+                        <%= link_to "会員一覧", admin_customers_path %>
+                    </li>
+                    <li class="">
+                        <%#<%= link_to "注文履歴一覧", admin_order_histories_path %>
+                    </li>
+                    <li class="">
+                        <%= link_to "ジャンル管理", admin_categories_path %>
+                    </li>
+                    <li class="">
+                        <%= link_to "アドミンログアウト", destroy_admin_session_path, method: :delete %>
+                    </li>
+                    <li class="">
+                        <%= link_to current_admin.email, "#" %>
+                    </li>
+                </ul>
+                <% else %>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="">
+                        <%= link_to "アドミン新規登録", new_admin_registration_path %>
+                    </li>
+                    <li class="">
+                        <%= link_to "アドミンログイン", new_admin_session_path %>
+                    </li> -->
+                    <% end %>
+                </ul>
+            </div>
+            <form class="navbar-form navbar-left" role="search">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="検索キーワード">
+                </div>
+                <button type="submit" class="btn btn-default">検索</button>
+            </form>
+        </div>
+    </nav>
+    </div>
+    </div>
+    </div> -->
     <%= yield %>
-  </body>
+    <div class="container-fluid">
+        <footer>
+            <p>@CopyRight Infratop.inc</p>
+        </footer>
+    </div>
+</body>
+
 </html>

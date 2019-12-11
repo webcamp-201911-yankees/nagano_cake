@@ -1,0 +1,35 @@
+<h2>ジャンル登録/一覧</h2>
+<!-- <div class="row"> -->
+<%= form_for(@category, url: admin_categories_path) do |f| %>
+<h4>ジャンル</h4>
+<%= f.text_field :name ,class:"col-xs"%>
+<%= f.submit '追加',class:"col-xs btn btn-primary"%>
+<% end %>
+<table class="table table-hover">
+    <tbody>
+        <tr>
+            <th>ジャンル</th>
+            <th></th>
+            <th></th>
+        </tr>
+        <% @categories.each do |category| %>
+        <tr>
+            <td>
+                <%=category.name %>
+            </td>
+            <td>
+                <button type="button" class="btn btn-success btn-sm">
+                    <%= link_to "編集する", edit_admin_category_path(category.id)%>
+                </button>
+                <button type="button" class="btn btn-success btn-sm">
+                    <%= category.status%>
+                    <%#<%= link_to @cate.status, admin_category_toggle_status_path(@cate) method: :patch%>
+                </button>
+                <%= form_for category, url: admin_category_path(category.id) do |f| %>
+                <%= f.select :status, Category.statuses.keys,:selected=>Category.statuses[category.status] %>
+                <%= f.submit "保存", class: "btn btn-primary btn-sm" %>
+                <% end %>
+        </tr>
+        <% end %>
+    </tbody>
+</table>
