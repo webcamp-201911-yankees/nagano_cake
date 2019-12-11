@@ -1,15 +1,15 @@
 class OrderHistoriesController < ApplicationController
-def index
+  2def index
 	@order_index = OrderHistory.all
-	@order_show = OrderHistory.find(params[:id])
-end
-
-def new
+# 	@order_show = OrderHistory.find(params[:id])
+# end
+  end
+  def new
 	@order_input = OrderHistory.new
 	@new_address = ShippingAddress.new
-end
+  end
 
-def create
+  def create
 	@order_input = OrderHistory.new(order_params)
 	@new_address = OrderHistories.new(order_params)
 
@@ -21,24 +21,23 @@ def create
 	# elsif params[:address] == "新しいお届け先"
 
 	# # else params[:address] == "登録済住所から選択
-end
+  end
 
-def show
-end
+  def show
+  end
 
-def edit
+  def edit
+  end
 
-end
+  def update
+  end
 
-def update
+  def complete
+  end
 
-end
-
-def complete
-end
-
-private
-def order_params
+  private
+  def order_params
 	params.require(:order_histories).permit(:payment_method,:customer_id,:shipping_zipcode,:shipping_address,:name)
-end
+  end
+
 end
