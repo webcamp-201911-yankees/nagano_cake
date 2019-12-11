@@ -3,7 +3,10 @@ class ProductsController < ApplicationController
   	@products = Product.all
   end
 
-
+  def show
+    @product = Product.find(params[:id])
+    @cart = Cart.new
+  end
 
   def edit
   end
@@ -17,9 +20,7 @@ class ProductsController < ApplicationController
     end
   end
 
-  def show
-    @product = Product.find(params[:id])
-  end
+
 
   private
   def product_params
