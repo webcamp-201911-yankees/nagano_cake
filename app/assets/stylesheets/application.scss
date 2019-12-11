@@ -16,3 +16,15 @@
 
 @import 'bootstrap-sprockets';
 @import 'bootstrap';
+
+.container-fluid{
+	margin: 0 auto;
+	width: 1080px;
+}
+.navbar-brand p{
+	color: #fff;
+	font-size: 40px;
+}
+.navbar{
+	margin-bottom: 0px;
+}

@@ -19,15 +19,23 @@ Rails.application.routes.draw do
 
   resources :shipping_addresses
 
+
   resources :carts, only: [:index,:create,:update,:destroy,]
 
+
+  resources :products
 
   namespace :admin do
     resources :products
     resources :customers
+    resources :categories do
+      patch :toggle_status
+    end
   end
 
+
   resources :order_histories,only: [:index,:new,:create,:show,:edit,:update]
+
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
