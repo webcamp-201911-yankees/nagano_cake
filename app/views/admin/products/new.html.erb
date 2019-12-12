@@ -1,4 +1,15 @@
 <%= render 'layouts/a_header' %>
+<% if @product.errors.any? %>
+<div id="error_explanation">
+    <ul>
+        <% @product.errors.full_messages.each do |message| %>
+        <li>
+            <%= message %>
+        </li>
+        <% end %>
+    </ul>
+</div>
+<% end %>
 <%= form_for(@product,url:admin_products_path) do |f| %>
 
 <h2>商品　新規登録画面</h2>
@@ -11,14 +22,7 @@
   <%= f.text_area :caption %>
 
   <h4>ジャンル</h4>
-  <select name="categories" required>
-  	<option value="">-- 選択してください --</option>
-  	<option value="ケーキ">ケーキ</option>
-  	<option value="焼き菓子">焼き菓子</option>
-  	<option value="チョコレート">チョコレート</option>
-  	<option value="和菓子">和菓子</option>
-  	<option value="アイス">アイス</option>
-   </select>
+    <%= f.collection_select :category_id, Category.all, :id, :name, :prompt => "選択してください" %>
   <h4>税抜価格</h4>
   <p><%= f.text_field :tax_excluded %>円</p>
 

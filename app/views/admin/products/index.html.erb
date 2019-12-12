@@ -9,7 +9,7 @@
           <th>商品</th>
           <th>商品名</th>
           <th>税抜価格</th>
-          <!-- <th>ジャンル</th> -->
+          <th>ジャンル</th>
           <th>ステータス</th>
         </tr>
             <% @products.each do |product| %>
@@ -21,7 +21,7 @@
           <% end %>
           </td>
           <td><%=product.tax_excluded%> 円</td>
-          <!-- <td>product.categories_name</td> -->
+          <td><%=product.category.name %></td>
           <td><%=product.sale_status%></td>
         </tr>
             <% end %>
