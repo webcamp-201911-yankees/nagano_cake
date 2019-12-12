@@ -1,5 +1,4 @@
 class Admin::CategoriesController < ApplicationController
-	class Admin::CategoriesController < ApplicationController
 	def index
 		@categories = Category.all
 		@category = Category.new
@@ -7,18 +6,13 @@ class Admin::CategoriesController < ApplicationController
 	def new
 	end
 	def create
-		@category = Category.find_or_initialize_by(id: category_params[:id])
-		if @category.new_record?
-			@category = Category.new(category_params)
-			@category.save
-		else
-			@category.update(category_params)
-		end
-		redirect_to admin_categories_path
-
-		# category = Category.new(category_params)
-		# category.save
-		# redirect_to admin_categories_path
+		@category = Category.new(category_params)
+			if @category.save
+				redirect_to admin_categories_path
+			else
+				@categories = Category.all
+				render :index
+			end
 	end
 	def edit
 		@category = Category.find(params[:id])
@@ -27,13 +21,14 @@ class Admin::CategoriesController < ApplicationController
 		@category = Category.find(params[:id])
 		@category.update(category_params)
 		redirect_to admin_categories_path
-		# redirect_to request.referer
 	end
 	def destroy
 		category = Category
 	end
 	def toggle_status
-		@cate.toggle_status!
+		@category = Category.find(params[:category_id])
+		# binding.pry
+		 @category.update(status: @category.toggle_status)
 		redirect_to admin_categories_path
 	end
 
@@ -41,9 +36,4 @@ class Admin::CategoriesController < ApplicationController
   def category_params
   	params.require(:category).permit(:name, :status)
   end
-  def set_cate
-  	@cate = Category.find(params[:id] || params[:category_id])
-  end
-end
-
 end
