@@ -9,7 +9,7 @@
 		<h2>商品一覧</h2>
 		<table>
 			<tbody>
-				<% @products.each do |product| %>
+				<% @results.each do |product| %>
 				<tr>
 					<td>
 					<%= link_to product_path(product.id) do %>
