@@ -14,15 +14,10 @@ Rails.application.routes.draw do
 
 
   resources :customers
-
   resources :products
-
   resources :shipping_addresses
-
-
-  resources :carts, only: [:index,:create,:update,:destroy,]
-
-
+  delete 'carts/destroy_all' => 'carts#destroy_all'
+  resources :carts
   resources :products
 
   namespace :admin do
