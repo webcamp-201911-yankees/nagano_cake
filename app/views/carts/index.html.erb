@@ -1,7 +1,9 @@
+<%= render 'layouts/c_header' %>
 <h2>ショッピングカート</h2>
   <button type="button" class="btn btn-danger btn-md">
     <%= link_to "空にする",carts_destroy_all_path, method: :delete %>
   </button>
+
 
     <table class="table table-hover">
       <tbody>

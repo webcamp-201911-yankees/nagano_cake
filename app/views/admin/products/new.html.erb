@@ -1,4 +1,4 @@
-
+<%= render 'layouts/a_header' %>
 <%= form_for(@product,url:admin_products_path) do |f| %>
 
 <h2>商品　新規登録画面</h2>
@@ -23,6 +23,7 @@
   <p><%= f.text_field :tax_excluded %>円</p>
 
   <h4>販売ステータス</h4>
+  <%= f.select :sale_status, Product.sale_statuses.keys, :selected=>Product.sale_statuses[@product.sale_status] %><br>
 
   <%= f.submit "新規登録" %>
 

@@ -1,3 +1,4 @@
+<%= render 'layouts/a_header' %>
 <h1>商品編集画面</h1>
 <div class="container">
     <div class="row">
@@ -37,14 +38,9 @@
                 </tr>
                 <tr>
                     <td><label>販売ステータス</label></td>
-                    <td><select name="categories" required>
-                            <option value="">-- 選択してください --</option>
-                            <option value="ケーキ">ケーキ</option>
-                            <option value="焼き菓子">焼き菓子</option>
-                            <option value="チョコレート">チョコレート</option>
-                            <option value="和菓子">和菓子</option>
-                            <option value="アイス">アイス</option>
-                        </select></td>
+                    <td>
+                        <%= product.select :sale_status, Product.sale_statuses.keys, :selected=>Product.sale_statuses[@product.sale_status] %>
+                    </td>
             </table>
             <%= product.submit "変更を保存", class: "btn btn-lg btn-primary" %>
             <% end %>
