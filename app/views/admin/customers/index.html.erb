@@ -7,7 +7,7 @@
       <th>顧客ID</th>
       <th>氏名</th>
       <th>メールアドレス</th>
-      <!-- <th>ステータス</th> -->
+      <th>ステータス</th>
     </tr>
     <% @customers.each do |customer| %>
     <tr>
@@ -18,7 +18,7 @@
       <% end %>
       </td>
       <td><%= customer.email %></td>
-      <!-- <td><%= customer.account_status %></td> -->
+      <td><%= customer.account_status %></td>
     </tr>
     <% end %>
   </tbody>
