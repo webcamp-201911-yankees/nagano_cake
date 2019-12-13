@@ -22,7 +22,9 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :products
-    resources :customers
+    resources :customers do
+      patch :toggle_status
+    end
     resources :categories do
       patch :toggle_status
     end

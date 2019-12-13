@@ -14,4 +14,15 @@ class Customer < ApplicationRecord
   validates :zipcode, format: {with: /\A[0-9]{7}\z/}
   validates :address, presence: true
   validates :phone_number, presence: true
+
+  enum account_status:{ 有効: 0, 無効: 1}
+
+  def toggle_status
+    if account_status == "有効"
+       account_status = 1
+    else
+       account_status = 0
+    end
+  end
+
 end
