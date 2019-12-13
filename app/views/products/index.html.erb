@@ -1,25 +1,20 @@
 <div class="container">
-	<div class="row">
-
-		<div class="main_visual">
-			main_visual
-		</div>
-
-		<h2>商品一覧</h2>
-		<table>
-			<tbody>
-				<% @products.each do |product| %>
-				<tr>
-					<td>
-					<%= link_to product_path(product.id) do %>
-						<%= attachment_image_tag product, :product_image, :fill, 200, 150 %><br>
-						<%= product.product_name %>　
-						<%= product.tax_excluded %>円
-					<% end %>
-					</td>
-				</tr>
-				<% end %>
-			</tbody>
-		</table>
-	</div>
+    <div class="row">
+        <h2>商品一覧</h2>
+        <table>
+            <tbody>
+                <% @products.each do |product| %>
+                <tr>
+                    <td>
+                        <%= link_to product_path(product.id) do %>
+                        <%= attachment_image_tag product, :product_image, :fill, 200, 150 %><br>
+                        <%= product.product_name %>　
+                        <%= product.tax_excluded %>円
+                        <% end %>
+                    </td>
+                </tr>
+                <% end %>
+            </tbody>
+        </table>
+    </div>
 </div>

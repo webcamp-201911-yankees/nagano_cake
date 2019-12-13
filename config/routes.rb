@@ -18,9 +18,10 @@ Rails.application.routes.draw do
   resources :products
 
   resources :shipping_addresses
+  post 'carts/confirm' => 'carts#confirm'
 
 
-  resources :carts, only: [:index,:create,:update,:destroy,]
+  resources :carts, only: [:index,:create,:update,:destroy,:new]
 
 
   resources :products

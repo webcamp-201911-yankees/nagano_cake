@@ -1,13 +1,10 @@
 class OrderHistoriesController < ApplicationController
-  2def index
+  def index
 	@order_index = OrderHistory.all
 # 	@order_show = OrderHistory.find(params[:id])
 # end
   end
-  def new
-	@order_input = OrderHistory.new
-	@new_address = ShippingAddress.new
-  end
+
 
   def create
 	@order_input = OrderHistory.new(order_params)
