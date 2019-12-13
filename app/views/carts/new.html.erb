@@ -1,41 +1,49 @@
-<div class= "container">
-  <h4>購入情報入力</h4>
+<div class="container">
+    <h4>購入情報入力</h4>
 
-<%= form_for(@order_input) do |f| %>
+    <%= form_for(@order_input,url: carts_confirm_path) do |f| %>
 
-  <h3>支払方法入力</h3>
-  <!-- enum(見た目は文字列、integerとして管理できる)を使用 -->
+    <h3>支払方法入力</h3>
+    <!-- enum(見た目は文字列、integerとして管理できる)を使用 -->
     <label>
-	  <%= f.radio_button :payment_method, :Credit %>クレジットカード
+        <%= f.radio_button :payment_method, :Credit %>クレジットカード
     </label>
     <label>
-	  <%= f.radio_button :payment_method, :Bank %>銀行振込
+        <%= f.radio_button :payment_method, :Bank %>銀行振込
     </label>
 
-  <h3>お届け先</h3>
+    <h3>お届け先</h3>
     <label>
-	  <%= f.radio_button :address, "ご自身の住所" %>ご自身の住所
+        <%= radio_button_tag("selected_button","customer_address") %>ご自身の住所
     </label>
-    <p>〒<span><%= current_customer.zipcode %><%= current_customer.address %><%= current_customer.last_name %><%= current_customer.first_name %></span></p>
-
+    <p>〒<span>
+            <%= current_customer.zipcode %>
+            <%= current_customer.address %>
+            <%= current_customer.last_name %>
+            <%= current_customer.first_name %></span></p>
     <label>
-	  <%= f.radio_button :address, "登録済住所から選択" %>登録済住所から選択
-    </label>
-      <%= f.label :customer_id %>
-      <%= f.collection_select :customer_id, ShippingAddress.where(customer_id: 1), :id, :shipping_address %><br>
-<!-- idをビューから、コントローラに渡している -->
-
+        <%= radio_button_tag("selected_button","another_address") %>登録済住所から選択
+    </label><br>
+    <%= f.label :customer_id %>
+    <%= f.collection_select :customer_id, ShippingAddress.where(customer_id: 1), :id, :shipping_address %><br>
+    <!--     customer_idの箇所はローカル変数fにあるカラムであればどれでも○
+ -->
+    <!-- idをビューから、コントローラに渡している -->
+        <%= f.submit "確認画面へ進む　" %><br>
     <label>
-	  <%= f.radio_button :address, "新しいお届け先" %>新しいお届け先
+        <%= radio_button_tag("selected_button","new_customer_address") %>新しいお届け先
     </label>
-    <%= form_for(@new_address) do |f| %>
-      <p>郵便番号<%= f.text_field :shipping_zipcode %><span>ハイフンなし</span></p>
-      <p>住所<%= f.text_field :shipping_address %></p>
-      <p>宛名<%= f.text_field :name %>
+    <%= f.fields_for(@new_address) do |na| %>
+        <p>郵便番号
+        <%= na.text_field :shipping_zipcode %><span>ハイフンなし</span></p>
+        <p>住所
+        <%= na.text_field :shipping_address %>
+        </p>
+        <p>宛名
+        <%= na.text_field :name %>
+        </p>
     <% end %>
-      <%= link_to "確認画面へ進む", order_history_path(current_customer.id), class:'btn btn-md btn-primary' %>
-<% end %>
+    <% end %>
 </div>
-
 <!-- ラジオボタンを使用するためには、labelタグが必須 -->
 <!-- OrderHistoriesテーブル、宛名カラムをnameに統一 -->

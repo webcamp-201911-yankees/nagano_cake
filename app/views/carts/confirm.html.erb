@@ -1,0 +1,69 @@
+<div class="container">
+    <h4>注文情報確認</h4>
+    <table border="1">
+        <tr>
+            <th>商品名</th>
+            <th>単価(税)</th>
+            <th>数量</th>
+            <th>小計</th>
+        </tr>
+        <% @total_price = 0 %>
+        <%= (@carts).each do |carts| %>
+        <tr>
+            <td>
+                <%= attachment_image_tag carts.product, :product_image, :fill,60,60 %>
+                <%= carts.product.product_name %>
+            </td>
+            <td>
+                <%= carts.product.tax_include %>
+            </td>
+            <td>
+                <%= carts.number %>
+            </td>
+            <td>
+                <%= carts.product.tax_include  * carts.number %>
+            </td>
+        </tr>
+        <% @total_price += carts.product.tax_include  * carts.number
+        %>
+        <% end %>
+    </table>
+
+    <table border="1">
+        <tr>
+            <td>送料</td>
+            <td>800</td>
+        </tr>
+        <tr>
+            <td>商品合計</td>
+            <td>
+                <%= @total_price %>
+            </td>
+        </tr>
+        <tr>
+            <td>請求金額</td>
+            <td>
+                <%= @total_price + 800%>
+            </td>
+        </tr>
+    </table>
+
+    <h3>支払方法</h3>
+    <p>
+        <%= @order_histories.payment_method %>
+    </p>
+    <h3>お届け先</h3>
+    <p>〒
+        <%= @order_histories.zipcode %>
+        <%= @order_histories.address %>
+        <%= @order_histories.name %>
+    </p>
+</div>
+
+<!-- 注文情報確認画面は複数のカートの情報を扱うので、showページではない。Confirmアクション等を作るのが○
+ -->
+<!--  Cartssコントローラのnewアクションは要修正 -->
+<!-- 注文情報確認テーブルの情報は全て、Cartsモデルと紐づいているため、Cartsモデルから作ったインスタンス変数を用いて、each文で表示させる -->
+<!-- 税金カラムは作った方が良い。作るなら、注文履歴テーブル
+税金は初期値を入力する -->
+<!-- 演算の記述方法は２つある。Viewにベタ書きするか、Controllerに変数を定f技して、Viewで表示させるか -->
