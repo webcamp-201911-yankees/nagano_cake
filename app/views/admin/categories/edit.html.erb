@@ -1,8 +1,7 @@
+<%= render 'layouts/a_header' %>
     <h2>ジャンル登録/編集</h2>
     <%= form_for(@category, url: admin_category_path(@category.id)) do |f| %>
       <h4>ジャンル</h4>
       <%= f.text_field :name ,class:"col-xs"%>
       <%= f.submit '保存する',class:"col-xs btn btn-primary"%>
- 
     <% end %>
-    <%= @category.status %>

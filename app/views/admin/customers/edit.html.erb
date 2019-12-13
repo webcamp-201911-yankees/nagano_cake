@@ -1,4 +1,6 @@
+<%= render 'layouts/a_header' %>
 <h2>会員編集画面</h2>
+
 
     <%= form_for(@customer, url: admin_customer_path(@customer.id)) do |f| %>
     <table>
@@ -39,6 +41,11 @@
             </td>
         </tr>
     </table>
-    <p class="btn btn-danger">退会済にする(確認ログ) ＊未完</p>
+
     <%= f.submit "変更を保存する",class:"btn btn-md btn-primary" %>
+    <% end %>
+    <% if @customer.account_status == "有効" %>
+        <%= link_to "退会済にする", admin_customer_toggle_status_path(@customer), class: "btn btn-danger", method: :patch, data: {confirm: "本当に退会させますか？"} %>
+    <% else %>
+        <%= link_to "有効会員にする", admin_customer_toggle_status_path(@customer), class: "btn btn-info", method: :patch %>
     <% end %>

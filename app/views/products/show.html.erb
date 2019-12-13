@@ -1,13 +1,9 @@
+
+<%= render 'layouts/c_header' %>
 <div class="container">
     <div class="row">
         <div class="col-lg-2">
-            <h4>ジャンル</h4>
-            <option value="">-- 選択してください --</option>
-            <option value="ケーキ">ケーキ</option>
-            <option value="焼き菓子">焼き菓子</option>
-            <option value="チョコレート">チョコレート</option>
-            <option value="和菓子">和菓子</option>
-            <option value="アイス">アイス</option>
+
         </div>
         <div class="col-lg-10">
             <%= attachment_image_tag @product, :product_image, :fill, 300,300, format: "jpeg", class: "pull-left profile-img", fallback: "no_image.jpg", :width => "300", :height => "300" %>
@@ -15,7 +11,7 @@
             <h2><%= @product.product_name %></h2>
             <h4>商品説明</h4>
             <%= @product.caption %>
-            <h2>¥<%= @product.tax_excluded*1.1.floor %>(税込)</h2>
+            <h2>¥<%= (@product.tax_excluded*1.1).floor %>(税込)</h2>
             <select>
                 <option value="">-- 個数選択 --</option>
                 <option value="ケーキ">ケーキ</option>
@@ -25,8 +21,8 @@
                 <option value="アイス">アイス</option>
             </select>
                 <%= form_for(@cart,url:carts_path) do |f| %>
-                <%= f.hidden_field :product_id, :value => @product.id %> 
-                <%= f.text_field :number %> 
+                <%= f.hidden_field :product_id, :value => @product.id %>
+                <%= f.text_field :number %>
                 <%= f.submit "カートに入れる" %>
             <% end %>
         </div>

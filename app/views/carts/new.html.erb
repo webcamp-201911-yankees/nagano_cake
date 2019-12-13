@@ -1,6 +1,7 @@
-<div class="container">
-    <h4>購入情報入力</h4>
 
+<%= render 'layouts/c_header' %>
+<div class= "container">
+  <h4>購入情報入力</h4>
     <%= form_for(@order_input,url: carts_confirm_path) do |f| %>
 
     <h3>支払方法入力</h3>

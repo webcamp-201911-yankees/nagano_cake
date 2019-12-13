@@ -10,7 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_10_040618) do
+
+ActiveRecord::Schema.define(version: 2019_12_13_024432) do
+
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -34,7 +36,7 @@ ActiveRecord::Schema.define(version: 2019_12_10_040618) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
-    t.integer "status"
+    t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -52,7 +54,7 @@ ActiveRecord::Schema.define(version: 2019_12_10_040618) do
     t.string "zipcode"
     t.string "address"
     t.string "phone_number"
-    t.string "account_status"
+    t.integer "account_status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_customers_on_email", unique: true

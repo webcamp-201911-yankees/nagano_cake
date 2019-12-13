@@ -9,12 +9,19 @@ class CartsController < ApplicationController
 	  @new_address = ShippingAddress.new
     end
 
+
 	def create
+		if current_customer.carts.where(product_id: params[:cart][:product_id].to_i).empty?
 		@cart = Cart.new(cart_params)
 		@cart.customer_id = current_customer.id
   	    @cart.save
-  	    redirect_to products_path
+	   else
+		@cart = current_customer.carts.find_by(product_id:params[:cart][:product_id].to_i)
+		@cart.update(number: params[:cart][:number].to_i + @cart.number)
+        end
+        redirect_to products_path
 	end
+
 
     def confirm
       @carts = current_customer.carts
@@ -48,6 +55,7 @@ class CartsController < ApplicationController
 		# @cart = Cart.find(current_customer.customer_id)
 	end
 
+
 	def update
 		@cart = Cart.find(params[:id])
 		@cart.update(cart_params)
@@ -58,6 +66,12 @@ class CartsController < ApplicationController
 		@cart = Cart.find(params[:id])
         @cart.destroy
         redirect_to carts_path
+	end
+
+	def destroy_all
+		@carts =  current_customer.carts
+		@carts.destroy_all
+		redirect_to products_path
 	end
 
  private

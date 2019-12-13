@@ -5,7 +5,6 @@ class OrderHistoriesController < ApplicationController
 # end
   end
 
-
   def create
 	@order_input = OrderHistory.new(order_params)
 	@new_address = OrderHistories.new(order_params)

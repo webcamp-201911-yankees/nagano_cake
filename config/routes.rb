@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     passwords: 'customers/passwords'
   }
 
-  devise_for :admins, admins: {
+  devise_for :admins, controllers: {
     sessions: 'admins/sessions',
     registrations: 'admins/registrations',
     passwords: 'admins/passwords'
@@ -14,21 +14,19 @@ Rails.application.routes.draw do
 
 
   resources :customers
-
   resources :products
-
   resources :shipping_addresses
-  post 'carts/confirm' => 'carts#confirm'
 
 
-  resources :carts, only: [:index,:create,:update,:destroy,:new]
+  delete 'carts/destroy_all' => 'carts#destroy_all'
+  resources :carts
 
-
-  resources :products
 
   namespace :admin do
     resources :products
-    resources :customers
+    resources :customers do
+      patch :toggle_status
+    end
     resources :categories do
       patch :toggle_status
     end

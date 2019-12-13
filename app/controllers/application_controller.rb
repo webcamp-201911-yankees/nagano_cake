@@ -4,27 +4,33 @@ class ApplicationController < ActionController::Base
 	def after_sign_up_path_for(resource)
 		case resource
 		when Admin
-		"/admin/products/new"#サインアップ後に移動するpath
-		# flash[:signedup] ="Welcome! You have signed up successfully."
+		"/admin/products"#サインアップ後に移動するpath
 		when Customer
-		"/customers/#{current_customer.id}"#サインアップ後に移動するpath
-		# flash[:signedup] ="Welcome! You have signed up successfully."
+		"/products"#サインアップ後に移動するpath
 		end
 	end
 
 	def after_sign_in_path_for(resource)
 		case resource
 		when Admin
-		"/admin/products/new"#ログイン後に移動するpath
-		# flash[:signedup] ="Welcome! You have signed up successfully."
+		"/admin/products"#ログイン後に移動するpath
 		when Customer
-		"/customers/#{current_customer.id}"#ログイン後に移動するpath
-		# flash[:signedin] ="Signed in successfully."
+		"/products"#ログイン後に移動するpath
 		end
 	end
-	def after_sign_out_path_for(resource)
-		"/customers/sign_in"#ログアウト後に移動するpath
-		# flash[:signedin] ="Signed in successfully."
+	def after_sign_out_path_for(resource_or_scope)
+		if resource_or_scope == :admin
+      		new_admin_session_path	#ログアウト後に移動するpath
+    else
+      		new_customer_session_path
+  end
+	end
+
+	before_action :set_search
+
+	def set_search
+	    @search = Product.ransack(params[:q])
+	    @results = @search.result
 	end
 
 

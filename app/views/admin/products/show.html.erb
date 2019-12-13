@@ -1,3 +1,4 @@
+<%= render 'layouts/a_header' %>
 <h1>商品詳細</h1>
 <div class="container">
     <div class="row">
@@ -21,22 +22,20 @@
                 <tr>
                     <td><label>ジャンル</label></td>
                     <td>
-                        <!-- 後で修正 -->
-                        <p>ケーキ</p>
+                        <%= @product.category.name %>
                     </td>
                 </tr>
                 <tr>
                     <td><label>税込価格(税抜価格)</label></td>
                     <td>
-                         <%= @product.tax_excluded %>
-                        (<%= @product.tax_excluded*1.1 %>)　円
+                         <%= (@product.tax_excluded*1.1).floor %>
+                        (<%= @product.tax_excluded %>)　円
                     </td>
                 </tr>
                 <tr>
                     <td><label>販売ステータス</label></td>
                     <td>
-                        <!-- 後で修正 -->
-                        <p>販売中</p>
+                        <%=@product.sale_status%>
                     </td>
                 </tr>
             </table>

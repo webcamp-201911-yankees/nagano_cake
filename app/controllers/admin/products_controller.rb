@@ -9,8 +9,11 @@ class Admin::ProductsController < ApplicationController
 
   def create
   	@product = Product.new(product_params)
-  	@product.save
+  	if @product.save
   	redirect_to admin_products_path
+    else
+      render :new
+    end
   end
 
   def edit

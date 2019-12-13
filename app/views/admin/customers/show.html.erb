@@ -1,11 +1,12 @@
+<%= render 'layouts/a_header' %>
 <h2>会員詳細画面</h2>
 
 	<table>
 		<tr>
 			<td>顧客ID　</td>
 			<td><%= @customer.id %></td>
-			<!-- <td>ステータス</td> -->
-			＊会員ステータス追加(有効会員／無効会員)
+			<!--<td>ステータス</td>-->
+			<td class="label label-default"><%= @customer.account_status %>会員</td>
 		</tr>
 		<tr>
 			<td>氏名　</td>
