@@ -1,62 +1,59 @@
-   <nav class="navbar-inverse">
-        <!-- //navbarを加えると、枠が丸くなる -->
-        <div class="container-fluid">
-            <header>
-                <div class="navbar">
-                    <div class="navbar-brand">
+<nav class="navbar-inverse bg-dark pb-4 mb-5">
+    <!-- //navbarを加えると、枠が丸くなる -->
+    <div class="container-fluid">
+        <header>
+            <div class="navbar">
+                <div class="navbar-brand mt-3">
                     <%= link_to products_path do %>
-                        <p>ながのCAKE</p>
-                    <% end %>
-                    </div>
-                    <% if  customer_signed_in? %>
-                    <!-- 右寄せになる部分 ================ -->
-                    <ul class="nav navbar-nav navbar-right">
-                        <!-- リンクのみ -->
-                        <li>
-                            <%= link_to customer_path(current_customer), class: 'btn-block' do %><span class="glyphicon glyphicon-user" aria-hidden="true">
-                                <%= current_customer.last_name %><%= current_customer.first_name %>さん
-                            </span>
-                            <% end %>
-                        </li>
-                        <li>
-                            <%= link_to carts_path, class: 'btn-block' do %><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"> Cart</span>
-                            <% end %>
-                        </li>
-                        <li>
-                            <%= link_to destroy_customer_session_path, method: :delete, class: "btn-block" do %><span class="glyphicon glyphicon-edit" aria-hidden="true"> Logout</span>
-                            <% end %>
-                        </li>
-                    </ul>
-                    <% else %>
-                    <ul class="nav navbar-nav navbar-right">
-                        <!-- リンクのみ -->
-                        <li>
-                            <%= link_to new_customer_registration_path, class: 'btn-block' do %><span class="glyphicon glyphicon-user" aria-hidden="true"> Guest</span>
-                            <% end %>
-                        </li>
-                        <li>
-                            <%= link_to new_customer_registration_path, class: 'btn-block' do %><span class="glyphicon glyphicon-edit" aria-hidden="true"> Sign-up</span>
-                            <% end %>
-                        </li>
-                        <li>
-                            <%= link_to new_customer_session_path, class: 'btn-block' do %><span class="glyphicon glyphicon-log-in" aria-hidden="true"> Login</span>
-                            <% end %>
-                        </li>
-                    </ul>
+                    <p>ながのCAKE</p>
                     <% end %>
                 </div>
-                <dl class="searchbox">
-                    <%= search_form_for @search, url: products_path do |f| %>
-                    <div class="navbar-form navbar-left">
-                        <div class="form-group">
-                        　<!--検索対象のカラムを:hoge_contで示す。itemnameだったらitemname_cont-->
-                            <%= f.search_field :product_name_cont, class: "form-control", placeholder: '検索ワードを入力' %>
-                            <%= f.submit "検索", class: 'btn btn-default' %>
-                        </div>
-
+                
+                <% if  customer_signed_in? %>
+                <!-- 右寄せになる部分 ================ -->
+                <ul class="nav navbar-nav navbar-right">
+                    <!-- リンクのみ -->
+                    <li>
+                        <!--                       <%= link_to   current_customer.last_name, new_customer_registration_path, class:'fas fa-user' %> -->
+                        <a href="/customers/:id" class="fas fa-user text-light">
+                            <%= current_customer.last_name %>
+                            <%= current_customer.first_name %></a>
+                    </li>
+                    <li>
+                        <%= link_to "  Cart", cart_path(current_customer.id),  class:'fas fa-cart-arrow-down text-light' %>
+                    </li>
+                    <li>
+                        <%= link_to "   カスタマーlogout", destroy_customer_session_path, method: :delete, class:"fas fa-sign-out-alt text-light" %>
+                    </li>
+                </ul>
+                <!-- ログインしていない時 -->
+                <% else %>
+                <ul class="nav navbar-nav navbar-right">
+                    <!-- リンクのみ -->
+                    <li>
+                        <%= link_to "    Guest", new_customer_registration_path, class:"fas fa-user text-light" %>
+                    </li>
+                    <li>
+                        <%= link_to "   Sign-up", new_customer_registration_path, class:'fas fa-user-plus text-light' %>
+                    </li>
+                    <li>
+                        <%= link_to "   login", new_customer_session_path, class:'fas fa-sign-in-alt text-light' %>
+                    </li>
+                </ul>
+                <% end %>
+            </div>
+            <dl class="searchbox">
+                <%= search_form_for @search, url: products_path do |f| %>
+                <div class="navbar-form navbar-left">
+                    <div class="form-group">
+                        　
+                        <!--検索対象のカラムを:hoge_contで示す。itemnameだったらitemname_cont-->
+                        <%= f.search_field :product_name_cont, class: "form-control col-3 mb-4", placeholder: '検索ワードを入力' %>
+                        <%= f.submit "検索", class: 'btn btn-default' %>
                     </div>
-                    <% end %>
-                </dl>
-            </header>
-        </div>
-    </nav>
+                </div>
+                <% end %>
+            </dl>
+        </header>
+    </div>
+</nav>

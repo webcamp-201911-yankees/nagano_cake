@@ -12,5 +12,5 @@ class Product < ApplicationRecord
 
 	def tax_include
 		tax_excluded * 1.1
-	end	
+	end
 end
