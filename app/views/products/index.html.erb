@@ -1,6 +1,5 @@
 <%= render 'layouts/c_header' %>
 <div class="container">
-
 	<div class="row">
 
 		<div class="main_visual">
@@ -11,6 +10,7 @@
 		<table>
 			<tbody>
 				<% @results.each do |product| %>
+				<% if product.sale_status == "販売中" %>
 				<tr>
 					<td>
 					<%= link_to product_path(product.id) do %>
@@ -20,6 +20,7 @@
 					<% end %>
 					</td>
 				</tr>
+				<% end %>
 				<% end %>
 			</tbody>
 		</table>

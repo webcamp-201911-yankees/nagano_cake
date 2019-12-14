@@ -1,6 +1,7 @@
 class ShippingAddressesController < ApplicationController
 	def index
-		@shipping_addresses = ShippingAddress.find(current_customer.id)
+		@customer = current_customer
+		@shipping_addresses = ShippingAddress.all
 		@shipping_addressn = ShippingAddress.new
 	end
 
@@ -11,8 +12,9 @@ class ShippingAddressesController < ApplicationController
 	end
 
 	def create
-		@shipping_addressn = ShippingAddress.new(shipping_address_params)
-  	    @shipping_addressn.save
+		@shipping_address = ShippingAddress.new(shipping_address_params)
+		@shipping_address.customer_id = current_customer.id
+  	    @shipping_address.save
   	    redirect_to shipping_addresses_path
 	end
 
