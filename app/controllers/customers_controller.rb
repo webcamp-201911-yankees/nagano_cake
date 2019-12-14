@@ -4,7 +4,7 @@ class CustomersController < ApplicationController
   end
 
   def show
-  	@customer = Customer.find(params[:id])
+  	@customer = current_customer
   end
 
   def edit
@@ -19,6 +19,6 @@ class CustomersController < ApplicationController
 
   private
   def customer_params
-  	params.require(:customers).permit(:email,:encrypted_password, :last_name, :first_name, :last_name_kana, :first_name_kana, :zipcode, :address, :phone_number, :account_status)
+  	params.require(:customer).permit(:email,:encrypted_password, :last_name, :first_name, :last_name_kana, :first_name_kana, :zipcode, :address, :phone_number, :account_status)
   end
 end
