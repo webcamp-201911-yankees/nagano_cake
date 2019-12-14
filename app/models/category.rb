@@ -1,6 +1,6 @@
 class Category < ApplicationRecord
 	has_many :products, dependent: :destroy
-	validates :name, presence: true
+	validates :name, presence: true, uniqueness: true
 	enum status: { 無効: 0, 有効: 1}
 
 	def toggle_status

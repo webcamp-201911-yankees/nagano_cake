@@ -19,8 +19,11 @@ class Admin::CategoriesController < ApplicationController
 	end
 	def update
 		@category = Category.find(params[:id])
-		@category.update(category_params)
+		if @category.update(category_params)
 		redirect_to admin_categories_path
+		else
+			render :edit
+		end
 	end
 	def destroy
 		category = Category
