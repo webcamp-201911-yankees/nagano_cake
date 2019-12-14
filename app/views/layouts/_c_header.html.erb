@@ -23,7 +23,7 @@
                         <%= link_to "  Cart", cart_path(current_customer.id),  class:'fas fa-cart-arrow-down text-light' %>
                     </li>
                     <li>
-                        <%= link_to "   カスタマーlogout", destroy_customer_session_path, method: :delete, class:"fas fa-sign-out-alt text-light" %>
+                        <%= link_to "   Logout", destroy_customer_session_path, method: :delete, class:"fas fa-sign-out-alt text-light" %>
                     </li>
                 </ul>
                 <!-- ログインしていない時 -->
@@ -37,7 +37,7 @@
                         <%= link_to "   Sign-up", new_customer_registration_path, class:'fas fa-user-plus text-light' %>
                     </li>
                     <li>
-                        <%= link_to "   login", new_customer_session_path, class:'fas fa-sign-in-alt text-light' %>
+                        <%= link_to "   Login", new_customer_session_path, class:'fas fa-sign-in-alt text-light' %>
                     </li>
                 </ul>
                 <% end %>
