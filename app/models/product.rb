@@ -3,7 +3,7 @@ class Product < ApplicationRecord
 	belongs_to :category
 	has_many :carts, dependent: :destroy
 	has_many :order_details, dependent: :destroy
-	validates :product_name, presence: true
+	validates :product_name, presence: true, uniqueness: true
 	validates :caption, presence: true
 	validates :tax_excluded, presence: true
 	validates :sale_status, presence: true

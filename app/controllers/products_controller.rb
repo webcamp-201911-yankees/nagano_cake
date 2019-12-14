@@ -26,7 +26,7 @@ class ProductsController < ApplicationController
     if product.update(product_params)
       redirect_to admin_product_path(product.id)
     else
-      redirect_to admin_products_path
+      render "admin/products/edit.html.erb"
     end
   end
 
