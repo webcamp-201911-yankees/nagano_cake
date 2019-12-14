@@ -12,18 +12,10 @@
             <h4>商品説明</h4>
             <%= @product.caption %>
             <h2>¥<%= (@product.tax_excluded*1.1).floor %>(税込)</h2>
-            <select>
-                <option value="">-- 個数選択 --</option>
-                <option value="ケーキ">ケーキ</option>
-                <option value="焼き菓子">焼き菓子</option>
-                <option value="チョコレート">チョコレート</option>
-                <option value="和菓子">和菓子</option>
-                <option value="アイス">アイス</option>
-            </select>
             <% if customer_signed_in? %>
             <%= form_for(@cart,url:carts_path) do |f| %>
                 <%= f.hidden_field :product_id, :value => @product.id %>
-                <%= f.text_field :number %>
+                <%= f.select :number, [1,2,3,4,5,6,7,8,9,10] %>
                 <%= f.submit "カートに入れる" %>
             <% end %>
             <% end %>

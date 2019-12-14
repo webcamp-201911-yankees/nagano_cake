@@ -1,4 +1,7 @@
 class Admin::ProductsController < ApplicationController
+  def top
+    # @produtn = Product.where("created_at >= ?", Time.zone.now.beginning_of_day)
+  end
   def index
   	@products = Product.all
   end

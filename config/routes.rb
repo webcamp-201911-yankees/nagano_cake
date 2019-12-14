@@ -23,6 +23,7 @@ Rails.application.routes.draw do
 
 
   namespace :admin do
+    root :to => 'products#top'
     resources :products
     resources :customers do
       patch :toggle_status

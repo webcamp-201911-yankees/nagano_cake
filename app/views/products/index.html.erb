@@ -1,28 +1,29 @@
 <%= render 'layouts/c_header' %>
 <div class="container">
 	<div class="row">
+		<div class="col-lg-12">
+			<div class="jumbotron">
+			  <div class="container main-visual">
+               <%= image_tag('img_top.jpg') %>
+			  </div>
+			</div>
+			<div class="container-fluid bg-3 text-center">
+			  <h3>商品一覧</h3><br>
 
-		<div class="main_visual">
-			main_visual
-		</div>
+　　　　　　　<div class="row">
+				<% @products.each do |product| %>
 
-		<h2>商品一覧</h2>
-		<table>
-			<tbody>
-				<% @results.each do |product| %>
-				<% if product.sale_status == "販売中" %>
-				<tr>
-					<td>
+				<div class="col-sm-3">
 					<%= link_to product_path(product.id) do %>
 						<%= attachment_image_tag product, :product_image, :fill, 200, 150 %><br>
 						<%= product.product_name %>
 						<%= product.tax_excluded %>円
 					<% end %>
-					</td>
-				</tr>
+				</div>
 				<% end %>
-				<% end %>
-			</tbody>
-		</table>
+			</div>
 	</div>
 </div>
+
+
+
