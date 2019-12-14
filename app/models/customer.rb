@@ -25,4 +25,6 @@ class Customer < ApplicationRecord
     end
   end
 
+  acts_as_paranoid #paranoia
+
 end
