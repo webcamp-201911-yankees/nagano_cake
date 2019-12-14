@@ -26,11 +26,11 @@
         <%= radio_button_tag("selected_button","another_address") %>登録済住所から選択
     </label><br>
     <%= f.label :customer_id %>
-    <%= f.collection_select :customer_id, ShippingAddress.where(customer_id: 1), :id, :shipping_address %><br>
+    <%= f.collection_select :customer_id, current_customer.shipping_addresses,:id, :shipping_address %><br>
     <!--     customer_idの箇所はローカル変数fにあるカラムであればどれでも○
  -->
     <!-- idをビューから、コントローラに渡している -->
-        <%= f.submit "確認画面へ進む　" %><br>
+        <%= f.submit "確認画面へ進む" %><br>
     <label>
         <%= radio_button_tag("selected_button","new_customer_address") %>新しいお届け先
     </label>

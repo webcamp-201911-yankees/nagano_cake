@@ -19,7 +19,6 @@ class CartsController < ApplicationController
 		@cart = current_customer.carts.find_by(product_id:params[:cart][:product_id].to_i)
 		@cart.update(number: params[:cart][:number].to_i + @cart.number)
         end
-        redirect_to products_path
 	end
 
 
@@ -27,21 +26,22 @@ class CartsController < ApplicationController
       @carts = current_customer.carts
       @order_histories = current_customer.order_histories
 
+      @order_history_address = OrderHistories.new
+
       if params[:selected_button] == "customer_address"
-      	@customer_address = current_customer.address
-      	@customer_address.save
-      	## current_customer
-      	#
+      	@order_history_address.address = current_customer.address
       end
-
       if  params[:selected_button] == "another_address"
-      	@shipping_address =  Shipping_address.where(customer_id: params[:shipping_address])
+      	@shipping_address =  ShippingAddress.find(params[:order_history][:customer_id])
+      	@order_history_address.address = @shipping_address.shipping_address
+      end
+	  if  params[:selected_button] == "new_customer_address"
+	  	@new_address = ShippingAddress.find(params[:current_customer.id])
+	  	@order_history_address.zipcode = @new_address.shipping_zipcode
+      	@order_history_address.address = @shipping_address.shipping_address
+      	@order_history_address.name = @shipping_address.name
       end
 
-	  if  params[:selected_button] == "new_customer_address"
-	  	@new_address = ShippingAddress.find(current_customer.id)
-	  	@new_address.save
-      end
     end
 
     def complete
