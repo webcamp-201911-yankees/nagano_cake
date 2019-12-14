@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   resources :products
   resources :shipping_addresses
 
-
+  get 'carts/confirm' => 'carts#confirm'
   delete 'carts/destroy_all' => 'carts#destroy_all'
   resources :carts
 
