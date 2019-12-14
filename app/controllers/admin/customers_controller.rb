@@ -1,25 +1,32 @@
 class Admin::CustomersController < ApplicationController
+	before_action :authenticate_admin!
+
 	def index
-		@customers = Customer.all
+		@customers = Customer.with_deleted
 	end
 
 	def show
-		@customer = Customer.find(params[:id])
+	  	@customer = Customer.with_deleted.find(params[:id])
 	end
 
 	def edit
-	  	@customer = Customer.find(params[:id])
+	  	@customer = Customer.with_deleted.find(params[:id])
 	end
 
 	def update
-	  	customer = Customer.find(params[:id])
+	  	customer = Customer.with_deleted.find(params[:id])
 	  	customer.update(customer_params)
 	  	redirect_to admin_customer_path(customer.id)
 	end
 
 	def toggle_status
-		@customer = Customer.find(params[:customer_id])
+		@customer = Customer.with_deleted.find(params[:customer_id])
 		@customer.update(account_status: @customer.toggle_status)
+		if @customer.account_status == "有効"
+			@customer.restore
+		else
+			@customer.destroy
+		end
 		redirect_to edit_admin_customer_path(@customer.id)
 	end
 

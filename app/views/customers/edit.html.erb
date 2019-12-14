@@ -1,6 +1,9 @@
 <%= render 'layouts/c_header' %>
 <div class="container">
     <h4>登録情報編集</h4>
+    <p>
+        <%= link_to "退会する", customer_path(@customer.id), method: :delete, "data-confirm" => "本当に退会しますか？", class: "btn-sm btn-danger" %>
+    </p>
     <%= form_for(@customer) do |f| %>
     <table border="1">
         <tr>
