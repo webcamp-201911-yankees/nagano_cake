@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 	def after_sign_up_path_for(resource)
 		case resource
 		when Admin
-		"/admin/products"#サインアップ後に移動するpath
+		"/admin"#サインアップ後に移動するpath
 		when Customer
 		"/products"#サインアップ後に移動するpath
 		end
@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
 	def after_sign_in_path_for(resource)
 		case resource
 		when Admin
-		"/admin/products"#ログイン後に移動するpath
+		"/admin"#ログイン後に移動するpath
 		when Customer
 		"/products"#ログイン後に移動するpath
 		end
