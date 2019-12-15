@@ -10,7 +10,10 @@ class Product < ApplicationRecord
 	validates :category_id, presence: true
 	enum sale_status:[:販売中, :販売停止中]
 
+
 	def tax_include
-		tax_excluded * 1.1
+		self.tax_excluded * 1.1
 	end
 end
+
+
