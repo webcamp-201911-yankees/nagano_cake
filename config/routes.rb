@@ -17,9 +17,9 @@ Rails.application.routes.draw do
   resources :products
   resources :shipping_addresses
 
-  post 'carts/confirm' => 'carts#confirm'
+  get 'carts/confirm' => 'carts#confirm'
   delete 'carts/destroy_all' => 'carts#destroy_all'
-  resources :carts, only: [:index,:new,:create,:edit,:update,:destroy]
+  resources :cgearts, only: [:index,:new,:create,:edit,:update,:destroy]
 
 
   namespace :admin do

@@ -4,5 +4,5 @@ class Cart < ApplicationRecord
 
     def get_product
 	  Product.find(self.product_id)
-	end	
+	end
 end
