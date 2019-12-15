@@ -19,6 +19,7 @@ class CartsController < ApplicationController
 		@cart = current_customer.carts.find_by(product_id:params[:cart][:product_id].to_i)
 		@cart.update(number: params[:cart][:number].to_i + @cart.number)
         end
+        redirect_to products_path
 	end
 
 
