@@ -17,4 +17,11 @@
 //= require popper
 //= require bootstrap-sprockets
 
-
+$(function() {
+    $('.main-visual').slick({
+        dots: true,
+        autoplay: true,
+        autoplaySpeed: 4000,
+        speed: 2000
+    });
+});
