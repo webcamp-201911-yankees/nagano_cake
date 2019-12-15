@@ -33,10 +33,9 @@ Rails.application.routes.draw do
     resources :categories do
       patch :toggle_status
     end
+    resources :order_histories
   end
 
-
-  
 
 
 

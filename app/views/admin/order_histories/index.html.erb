@@ -10,11 +10,11 @@
 		</tr>
 		<%= @order_histories.each do |order_history| %>
 		<tr>
-			<td><%= link_to admin_order_history_path(
-			order_histories.id) do %>
-				<%= order_history.created_at %></td>
+			<%= link_to admin_order_history_path(order_history.id) do %>
+			<td><%= order_history.created_at %></td>
+			<% end %>
 			<td><%= order_history.name %></td>
-			<td><%= aaaaa %></td>
+			<td><%=aaaaa %></td>
 			<td><%= order_history.order_status %></td>
 		</tr>
 		<% end %>

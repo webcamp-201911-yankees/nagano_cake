@@ -1,2 +1,78 @@
-<h1>Admin::OrderHistories#show</h1>
-<p>Find me in app/views/admin/order_histories/show.html.erb</p>
+<%= render 'layouts/a_header' %>
+<div class= "container">
+	<h1>注文詳細画面</h1>
+	<table>
+		<tr>
+			<td>購入者　</td>
+			<td>
+			<%= link_to admin_customer_path(@order_history.customer_id) do %>
+				<%= @order_history.customer.last_name %><%= @order_history.customer.first_name %>
+			<% end %>
+			</td>
+		</tr>
+		<tr>
+			<td>配送先　</td>
+			<td>
+				<%= @order_history.shipping_zipcode %>
+				<%= @order_history.shipping_address %>
+				<%= @order_history.name %>
+			</td>
+		</tr>
+		<tr>
+			<td>支払方法　</td>
+			<td><%= @order_history.payment_method %></td>
+		</tr>
+		<tr>
+			<td>注文ステータス　</td>
+			<td>
+				現在 <%= @order_history.order_status %>
+			<%= form_for(@order_history) do |f| %>
+				<%= f.select :order_status, OrderHistory.order_statuses.keys, :selected=>OrderHistory.order_statuses[@order_history.order_statuses] %>
+				<%= f.submit "更新", class: "btn btn-lg btn-primary" %>
+			<% end %>
+			</td>
+		</tr>
+	</table>
+	<table>
+		<tr>
+			<th>商品名</th>
+			<th>単価(税込)</th>
+			<th>数量</th>
+			<th>小計</th>
+			<th>製作ステータス</th>
+		</tr>
+		<tr>
+		<% total = 0 %>
+		<% @order_details each do |detail| %>
+			<td><%= detail.product.product_name %></td>
+			<td><%= detail.tax_included %></td>
+			<td><%= detail.number %></td>
+			<td><%= price = detail.tax_included*detail.number %></td>
+			<td>
+			    <select required>
+					<option value= "製作待ち">製作待ち</option>
+					<option value= "製作中">製作中</option>
+					<option value= "製作完了">製作完了</option>
+			    </select>
+			</td>
+		<% total = price * detail.number + total %>
+		<% end %>
+		</tr>
+	</table>
+    <table>
+		<tr>
+			<td>商品合計</td>
+			<td><%= total %></td>
+		</tr>
+		<tr>
+			<td>送料</td>
+			<td>800</td>
+				<!--<%= @order_history.shipping_fee %>-->
+		</tr>
+		<tr>
+			<td>請求金額合計</td>
+			<td><%= total + 800 %></td>
+				<!--<%= total %>.to_i + <%= @order_history.shipping_fee %>.to_i-->
+		</tr>
+	</table>
+</div>
