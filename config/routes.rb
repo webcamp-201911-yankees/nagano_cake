@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  namespace :admin do
+    get 'order_histories/index'
+    get 'order_histories/show'
+  end
   devise_for :customers, controllers: {
     sessions: 'customers/sessions',
     registrations: 'customers/registrations',
