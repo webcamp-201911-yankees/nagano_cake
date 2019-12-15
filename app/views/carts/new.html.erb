@@ -1,9 +1,7 @@
-
 <%= render 'layouts/c_header' %>
-<div class= "container">
-  <h4>購入情報入力</h4>
-    <%= form_for(@order_input,url: carts_confirm_path) do |f| %>
-
+<div class="container">
+    <h4>購入情報入力</h4>
+    <%= form_for(@order_input,url: carts_confirm_path,method: :get) do |f| %>
     <h3>支払方法入力</h3>
     <!-- enum(見た目は文字列、integerとして管理できる)を使用 -->
     <label>
@@ -12,7 +10,6 @@
     <label>
         <%= f.radio_button :payment_method, :Bank %>銀行振込
     </label>
-
     <h3>お届け先</h3>
     <label>
         <%= radio_button_tag("selected_button","customer_address") %>ご自身の住所
@@ -30,20 +27,20 @@
     <!--     customer_idの箇所はローカル変数fにあるカラムであればどれでも○
  -->
     <!-- idをビューから、コントローラに渡している -->
-        <%= f.submit "確認画面へ進む" %><br>
     <label>
         <%= radio_button_tag("selected_button","new_customer_address") %>新しいお届け先
     </label>
     <%= f.fields_for(@new_address) do |na| %>
-        <p>郵便番号
+    <p>郵便番号
         <%= na.text_field :shipping_zipcode %><span>ハイフンなし</span></p>
-        <p>住所
+    <p>住所
         <%= na.text_field :shipping_address %>
-        </p>
-        <p>宛名
+    </p>
+    <p>宛名
         <%= na.text_field :name %>
-        </p>
+    </p>
     <% end %>
+    <%= f.submit "確認画面へ進む" %><br>
     <% end %>
 </div>
 <!-- ラジオボタンを使用するためには、labelタグが必須 -->
