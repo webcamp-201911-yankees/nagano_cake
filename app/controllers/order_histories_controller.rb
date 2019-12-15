@@ -33,7 +33,7 @@ class OrderHistoriesController < ApplicationController
 
   private
   def order_params
-	params.require(:order_histories).permit(:payment_method,:customer_id,:shipping_zipcode,:shipping_address,:name)
+	params.require(:order_history).permit(:payment_method,:customer_id,:shipping_zipcode,:shipping_address,:name)
   end
 
 end

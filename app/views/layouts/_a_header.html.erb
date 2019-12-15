@@ -10,30 +10,31 @@
                     </div>
 
                 <% if admin_signed_in? %>
-                <ul class="nav navbar-nav navbar-right">
+                <ul class="nav navbar-expand navbar-right">
                     <li class="">
-                        <%= link_to "   商品一覧", admin_products_path,class:'fas fa-birthday-cake text-light' %>
+                        <%= link_to "   商品一覧", admin_products_path,class:'fas fa-birthday-cake mr-3 text-light' %>
                     </li>
                     <li class="">
-                        <%= link_to "   会員一覧", admin_customers_path, class:'fas fa-users text-light' %>
+                        <%= link_to "   会員一覧", admin_customers_path, class:'fas fa-users mr-3 text-light' %>
                     </li>
                     <li class="">
+
                         <%= link_to "   注文一覧画面",  admin_order_histories_path, class:'fas fa-history text-light' %>
+
+                        <%= link_to "   注文履歴一覧", admin_order_histories_path, class:'fas fa-history mr-3 text-light' %>
+
                     </li>
                     <li class="">
-                        <%= link_to "   ジャンル管理", admin_categories_path, class:"fas fa-tasks text-light" %>
+                        <%= link_to "   ジャンル管理", admin_categories_path, class:"fas fa-tasks mr-3 text-light" %>
                     </li>
                     <li class="">
                         <%= link_to "   ログアウト", destroy_admin_session_path, class:"fas fa-sign-out-alt text-light", method: :delete %>
                     </li>
-                    <li class="">
-                        <%= link_to current_admin.email, "#" %>
-                    </li>
                 </ul>
                 <% else %>
-                <ul class="nav navbar-nav navbar-right">
+                <ul class="nav navbar-expand navbar-right">
                     <li class="">
-                        <%= link_to "   新規登録", new_admin_registration_path, class:'fas fa-user-plus text-light'  %>
+                        <%= link_to "   新規登録", new_admin_registration_path, class:'fas fa-user-plus mr-4 text-light'  %>
                     </li>
                     <li class="">
                         <%= link_to "   ログイン", new_admin_session_path, class:'fas fa-sign-in-alt text-light' %>
@@ -45,10 +46,12 @@
                 <dl class="searchbox">
                     <%= search_form_for @search, url: admin_products_path do |f| %>
                     <div class="navbar-form navbar-left">
-                        <div class="form-group">
+                        <div class="input-group">
                         　<!--検索対象のカラムを:hoge_contで示す。itemnameだったらitemname_cont-->
                             <%= f.search_field :product_name_cont, class: "form-control col-3 mb-4", placeholder: '検索ワードを入力' %>
+                            <span class="input-group-btn">
                             <%= f.submit "検索", class: 'btn btn-default' %>
+                            </span>
                         </div>
 
                     </div>

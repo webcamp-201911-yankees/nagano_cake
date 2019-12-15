@@ -10,6 +10,7 @@
 		</tr>
 		<%= @order_histories.each do |order_history| %>
 		<tr>
+
 			<td><%= link_to admin_order_history_path(
 			order_histories.id) do %>
 				<%= order_history.created_at %></td>
