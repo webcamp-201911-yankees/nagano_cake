@@ -44,20 +44,20 @@
         <tr>
             <td>請求金額</td>
             <td>
-                <%= @total_price + 800%>
+                <%= @total_price + 800 %>
             </td>
         </tr>
     </table>
 
     <h3>支払方法</h3>
     <p>
-        <%= @order_history_address.payment_method %>
+        <%= @payment_method %>
     </p>
     <h3>お届け先</h3>
     <p>〒
-        <%= @order_history_address.zipcode %>
-        <%= @order_history_address.address %>
-        <%= @order_history_address.name %>
+        <%= @order_history.zipcode %>
+        <%= @order_history.address %>
+        <%= @order_history.name %>
     </p>
 </div>
 

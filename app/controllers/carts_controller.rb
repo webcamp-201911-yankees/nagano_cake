@@ -25,6 +25,8 @@ class CartsController < ApplicationController
     def confirm
       @carts = current_customer.carts
       @order_history = OrderHistory.new
+      @payment_method = params[:payment_method]
+
       if params[:selected_button] == "customer_address"
       	@order_history.address = current_customer.address
       end
@@ -35,8 +37,8 @@ class CartsController < ApplicationController
 	  if  params[:selected_button] == "new_customer_address"
 	  	@new_address = ShippingAddress.find(params[:current_customer.id])
 	  	@order_history.zipcode = @new_address.shipping_zipcode
-      	@order_history.address = @shipping_address.shipping_address
-      	@order_history.name = @shipping_address.name
+      	@order_history.address = @new_address.shipping_address
+      	@order_history.name = @new_address.name
       end
 
     end
