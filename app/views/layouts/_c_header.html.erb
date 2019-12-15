@@ -8,7 +8,6 @@
                     <p>ながのCAKE</p>
                     <% end %>
                 </div>
-                
                 <% if  customer_signed_in? %>
                 <!-- 右寄せになる部分 ================ -->
                 <ul class="nav navbar-expand navbar-right">
@@ -20,7 +19,7 @@
                         <% end %>
                     </li>
                     <li>
-                        <%= link_to "  Cart", cart_path(current_customer.id),  class:'fas fa-cart-arrow-down mr-4 text-light' %>
+                        <%= link_to "  Cart", carts_path,  class:'fas fa-cart-arrow-down mr-4 text-light' %>
                     </li>
                     <li>
                         <%= link_to "   Logout", destroy_customer_session_path, method: :delete, class:"fas fa-sign-out-alt text-light" %>
