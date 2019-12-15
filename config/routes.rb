@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
 
-  namespace :admin do
-    get 'order_histories/index'
-    get 'order_histories/show'
-  end
   devise_for :customers, controllers: {
     sessions: 'customers/sessions',
     registrations: 'customers/registrations',
@@ -20,6 +16,7 @@ Rails.application.routes.draw do
   resources :customers
   resources :products
   resources :shipping_addresses
+  resources :order_histories,only: [:index,:new,:create,:show,:edit,:update]
 
   get 'carts/confirm' => 'carts#confirm'
   delete 'carts/destroy_all' => 'carts#destroy_all'
@@ -35,10 +32,11 @@ Rails.application.routes.draw do
     resources :categories do
       patch :toggle_status
     end
+    resources :order_histories
   end
 
 
-  resources :order_histories,only: [:index,:new,:create,:show,:edit,:update]
+
 
 
 
