@@ -1,3 +1,4 @@
+<%= render 'layouts/c_header' %>
 <div class="container">
     <h4>注文情報確認</h4>
     <table border="1">
@@ -7,24 +8,24 @@
             <th>数量</th>
             <th>小計</th>
         </tr>
+<!-- 関数 get_product/tax_includeはcart.rb/product.rbに定義 -->
         <% @total_price = 0 %>
-        <%= (@carts).each do |carts| %>
+        <%= (@carts).each do |cart| %>
         <tr>
             <td>
-                <%= attachment_image_tag carts.product, :product_image, :fill,60,60 %>
-                <%= carts.product.product_name %>
+                <%= attachment_image_tag cart.get_product , :product_image, :fill,60,60 %>
+                <%= cart.get_product.product_name %>
             </td>
             <td>
-                <%= carts.product.tax_include %>
+                <%= cart.get_product.tax_include %>
+            <td>
+                <%= cart.number %>
             </td>
             <td>
-                <%= carts.number %>
-            </td>
-            <td>
-                <%= carts.product.tax_include  * carts.number %>
+                <%= cart.get_product.tax_include  * cart.number %>
             </td>
         </tr>
-        <% @total_price += carts.product.tax_include  * carts.number
+        <% @total_price += cart.product.tax_include   * cart.number
         %>
         <% end %>
     </table>
@@ -50,15 +51,17 @@
 
     <h3>支払方法</h3>
     <p>
-        <%= @order_histories.payment_method %>
+        <%= @order_history_address.payment_method %>
     </p>
     <h3>お届け先</h3>
     <p>〒
-        <%= @order_histories.zipcode %>
-        <%= @order_histories.address %>
-        <%= @order_histories.name %>
+        <%= @order_history_address.zipcode %>
+        <%= @order_history_address.address %>
+        <%= @order_history_address.name %>
     </p>
 </div>
+
+<%= f.submit "購入を確定する" %>
 
 <!-- 注文情報確認画面は複数のカートの情報を扱うので、showページではない。Confirmアクション等を作るのが○
  -->
@@ -66,4 +69,4 @@
 <!-- 注文情報確認テーブルの情報は全て、Cartsモデルと紐づいているため、Cartsモデルから作ったインスタンス変数を用いて、each文で表示させる -->
 <!-- 税金カラムは作った方が良い。作るなら、注文履歴テーブル
 税金は初期値を入力する -->
-<!-- 演算の記述方法は２つある。Viewにベタ書きするか、Controllerに変数を定f技して、Viewで表示させるか -->
+<!-- 演算の記述方法は２つある。Viewにベタ書きするか、Controllerに変数を定義して、Viewで表示させるか -->

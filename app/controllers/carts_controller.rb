@@ -24,37 +24,25 @@ class CartsController < ApplicationController
 
     def confirm
       @carts = current_customer.carts
-      @order_histories = current_customer.order_histories
-
-      @order_history_address = OrderHistories.new
-
+      @order_history = OrderHistory.new
       if params[:selected_button] == "customer_address"
-      	@order_history_address.address = current_customer.address
+      	@order_history.address = current_customer.address
       end
       if  params[:selected_button] == "another_address"
       	@shipping_address =  ShippingAddress.find(params[:order_history][:customer_id])
-      	@order_history_address.address = @shipping_address.shipping_address
+      	@order_history.address = @shipping_address.shipping_address
       end
 	  if  params[:selected_button] == "new_customer_address"
 	  	@new_address = ShippingAddress.find(params[:current_customer.id])
-	  	@order_history_address.zipcode = @new_address.shipping_zipcode
-      	@order_history_address.address = @shipping_address.shipping_address
-      	@order_history_address.name = @shipping_address.name
+	  	@order_history.zipcode = @new_address.shipping_zipcode
+      	@order_history.address = @shipping_address.shipping_address
+      	@order_history.name = @shipping_address.name
       end
 
     end
 
     def complete
     end
-
-	def show
-		pp params[:id]
-		# @product = Product.find(current_customer.id)
-		# @order_history = OrderHistory.find(current_customer.id)
-		# @order_detail = OrderDetail.find(@order_history.id)
-		# @cart = Cart.find(current_customer.customer_id)
-	end
-
 
 	def update
 		@cart = Cart.find(params[:id])
