@@ -11,6 +11,7 @@ class CartsController < ApplicationController
 
 
 	def create
+
 		if current_customer.carts.where(product_id: params[:cart][:product_id].to_i).empty?
 		@cart = Cart.new(cart_params)
 		@cart.customer_id = current_customer.id
@@ -26,17 +27,20 @@ class CartsController < ApplicationController
     def confirm
       @carts = current_customer.carts
       @order_history = OrderHistory.new
-      @payment_method = params[:order_history][:payment_method]
+      @order_history.payment_method = params[:order_history][:payment_method]
+      @new_address = ShippingAddress.new
 
       if params[:selected_button] == "customer_address"
+        @order_history.zipcode = current_customer.zipcode      	
       	@order_history.address = current_customer.address
+      	@order_history.name = current_customer.last_name + current_customer.first_name
+
       end
       if  params[:selected_button] == "another_address"
       	@shipping_address =  ShippingAddress.find(params[:order_history][:customer_id])
       	@order_history.address = @shipping_address.shipping_address
       end
 	  if  params[:selected_button] == "new_customer_address"
-	  	@new_address = ShippingAddress.find(params[:current_customer.id])
 	  	@order_history.zipcode = @new_address.shipping_zipcode
       	@order_history.address = @new_address.shipping_address
       	@order_history.name = @new_address.name
@@ -74,9 +78,9 @@ class CartsController < ApplicationController
       params.require(:cart).permit(:number,:product_id)
     end
     def order_params
-	  params.require(:order_history).permit(:payment_method,:customer_id,:shipping_zipcode,:shipping_address,:name)
+	  params.require(:order_history).permit(:payment_method,:customer_id,:zipcode,:address,:name)
     end
     def order_details_params
-      params.require(:order_detail).permit(:order_history_id,:product_id,:tax_included,:number,:prepare_status)    
+      params.require(:order_detail).permit(:order_history_id,:product_id,:tax_included,:number,:prepare_status)
     end
  end
