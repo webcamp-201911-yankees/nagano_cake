@@ -6,20 +6,10 @@ class OrderHistoriesController < ApplicationController
   end
 
   def create
-	# @order_input = OrderHistory.new(order_params)
-	# @new_address = OrderHistories.new(order_params)
+    @order_history = OrderHistory.new(order_params)
+    @order_history.save
+    redirect_to carts_path
 
-  @order_history = OrderHistory.new(order_params)
-  @order_history.payment_method.save
-  redirect_to carts_path
-	# if params[:order_histories][:address] ==　"ご自身の住所"
-	# 	@order_input.zipcode  ==  current_customer.zipcode
-	# 	@order_input.address  ==  current_customer.address
-	# 	@order_input.name  ==  current_customer.name
-
-	# elsif params[:address] == "新しいお届け先"
-
-	# # else params[:address] == "登録済住所から選択
   end
 
   def show
@@ -36,7 +26,7 @@ class OrderHistoriesController < ApplicationController
 
   private
   def order_params
-	params.require(:order_history).permit(:payment_method,:customer_id,:shipping_zipcode,:shipping_address,:name)
+	params.require(:order_history).permit(:payment_method,:customer_id,:zipcode,:address,:name)
   end
 
 end
