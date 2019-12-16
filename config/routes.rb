@@ -19,10 +19,9 @@ Rails.application.routes.draw do
   resources :order_histories,only: [:index,:new,:create,:show,:edit,:update]
 
   get 'carts/confirm' => 'carts#confirm'
-<<<<<<< HEAD
+
   get 'carts/complete' => 'carts#complete'
-=======
->>>>>>> 9171c4116f577b0a37a398866c715ce1884f6209
+
   delete 'carts/destroy_all' => 'carts#destroy_all'
   resources :carts, only: [:index,:new,:create,:edit,:update,:destroy]
 

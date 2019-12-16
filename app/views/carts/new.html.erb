@@ -1,16 +1,16 @@
 <%= render 'layouts/c_header' %>
 <div class="container">
-    <h4>購入情報入力</h4>
+    <h3 class="mb-4">購入情報入力</h3>
     <%= form_for(@order_input,url: carts_confirm_path,method: :get) do |f| %>
-    <h3>支払方法入力</h3>
+    <h4>支払方法入力</h4>
     <!-- enum(見た目は文字列、integerとして管理できる)を使用 -->
     <label>
-        <%= f.radio_button :payment_method, :Credit %>クレジットカード
+        <%= f.radio_button :payment_method, :クレジットカード %>クレジットカード
     </label>
     <label>
-        <%= f.radio_button :payment_method, :Bank %>銀行振込
+        <%= f.radio_button :payment_method, :銀行振込 %>銀行振込
     </label>
-    <h3>お届け先</h3>
+    <h4 class="mt-2">お届け先</h4>
     <label>
         <%= radio_button_tag("selected_button","customer_address") %>ご自身の住所
     </label>
@@ -40,7 +40,7 @@
         <%= na.text_field :name %>
     </p>
     <% end %>
-    <%= f.submit "確認画面へ進む" %><br>
+    <%= f.submit "確認画面へ進む",class:'mt-2'%><br>
     <% end %>
 </div>
 <!-- ラジオボタンを使用するためには、labelタグが必須 -->
