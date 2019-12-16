@@ -5,7 +5,7 @@ class CartsController < ApplicationController
 	end
 
     def new
-	  @order_input = OrderHistory.new
+	  @order_history = OrderHistory.new
 	  @new_address = ShippingAddress.new
     end
 
@@ -44,6 +44,7 @@ class CartsController < ApplicationController
     end
 
     def complete
+
     end
 
 	def update
@@ -66,10 +67,16 @@ class CartsController < ApplicationController
 
  private
  	def product_params
-  	params.require(:product).permit(:product_image, :caption,:product_name,:category_id,:tax_excluded,:sale_status)
+  	  params.require(:product).permit(:product_image, :caption,:product_name,:category_id,:tax_excluded,:sale_status)
     end
 
     def cart_params
-    params.require(:cart).permit(:number,:product_id)
+      params.require(:cart).permit(:number,:product_id)
+    end
+    def order_params
+	  params.require(:order_history).permit(:payment_method,:customer_id,:shipping_zipcode,:shipping_address,:name)
+    end
+    def order_details_params
+      params.require(:order_detail).permit(:order_history_id,:product_id,:tax_included,:number,:prepare_status)    
     end
  end
