@@ -1,36 +1,39 @@
 <%= render 'layouts/c_header' %>
 <div class="container">
-    <h4>注文情報確認</h4>
-    <table border="1">
-        <tr>
-            <th>商品名</th>
-            <th>単価(税)</th>
-            <th>数量</th>
-            <th>小計</th>
-        </tr>
-<!-- 関数 get_product/tax_includeはcart.rb/product.rbに定義 -->
+    <h3>注文情報確認</h3>
+    <table class="table table-bordered text-center">
+        <thead>
+            <tr>
+                <th>商品名</th>
+                <th>単価(税)</th>
+                <th>数量</th>
+                <th>小計</th>
+            </tr>
+        </thead>
+        <!-- 関数 get_product/tax_includeはcart.rb/product.rbに定義 -->
         <% @total_price = 0 %>
-        <%= (@carts).each do |cart| %>
-        <tr>
-            <td>
-                <%= attachment_image_tag cart.get_product , :product_image, :fill,60,60 %>
-                <%= cart.get_product.product_name %>
-            </td>
-            <td>
-                <%= cart.get_product.tax_include %>
-            <td>
-                <%= cart.number %>
-            </td>
-            <td>
-                <%= cart.get_product.tax_include  * cart.number %>
-            </td>
-        </tr>
-        <% @total_price += cart.product.tax_include   * cart.number
+        <tbody>
+            <%= (@carts).each do |cart| %>
+            <tr>
+                <td class="align-middle">
+                    <%= attachment_image_tag cart.get_product , :product_image, :fill,60,60 %>
+                    <%= cart.get_product.product_name %>
+                </td>
+                <td class="align-middle">
+                    <%= cart.get_product.tax_include.floor %>
+                <td class="align-middle">
+                    <%= cart.number.floor %>
+                </td>
+                <td class="align-middle">
+                    <%= cart.get_product.tax_include  * cart.number.floor %>
+                </td>
+            </tr>
+            <% @total_price += cart.product.tax_include   * cart.number
         %>
-        <% end %>
+            <% end %>
+        </tbody>
     </table>
-
-    <table border="1">
+    <table class="table table-bordered text-center">
         <tr>
             <td>送料</td>
             <td>800</td>
@@ -38,31 +41,30 @@
         <tr>
             <td>商品合計</td>
             <td>
-                <%= @total_price %>
+                <%= @total_price.floor %>
             </td>
         </tr>
         <tr>
             <td>請求金額</td>
             <td>
-                <%= @total_price + 800 %>
+                <%= (@total_price + 800).floor %>
             </td>
         </tr>
     </table>
-
-    <h3>支払方法</h3>
-    <p>
-        <%= @payment_method %>
-    </p>
-    <h3>お届け先</h3>
-    <p>〒
-        <%= @order_history.zipcode %>
-        <%= @order_history.address %>
-        <%= @order_history.name %>
-    </p>
+    <div class="important info">
+        <h5>支払方法</h5>
+        <p>
+            <%= @payment_method %>
+        </p>
+        <h5>お届け先</h5>
+        <p>〒
+            <%= @order_history.zipcode %>
+            <%= @order_history.address %>
+            <%= @order_history.name %>
+        </p>
+        <%= link_to "購入を確定する", carts_complete_path, class:'btn btn-md btn-primary' %>
+    </div>
 </div>
-
-<%= f.submit "購入を確定する" %>
-
 <!-- 注文情報確認画面は複数のカートの情報を扱うので、showページではない。Confirmアクション等を作るのが○
  -->
 <!--  Cartssコントローラのnewアクションは要修正 -->
