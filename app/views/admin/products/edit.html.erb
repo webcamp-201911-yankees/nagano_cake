@@ -34,7 +34,7 @@
                     <td>販売ステータス</td>
                     <td>
                         <div class="badge badge-secondary"><%= @product.sale_status %></div>
-                        <%= f.select :sale_status, Product.sale_statuses.keys, :selected=>Product.sale_statuses[@product.sale_status] %>
+                        <%= f.select :sale_status, Product.sale_statuses.keys, :selected=>Product.sale_statuses[@product.sale_status] %>に変更
                     </td>
             </table>
             <%= f.submit "変更を保存", class: "btn btn-lg btn-primary" %>
