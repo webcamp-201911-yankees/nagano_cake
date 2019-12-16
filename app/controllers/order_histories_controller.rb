@@ -6,9 +6,12 @@ class OrderHistoriesController < ApplicationController
   end
 
   def create
-	@order_input = OrderHistory.new(order_params)
-	@new_address = OrderHistories.new(order_params)
+	# @order_input = OrderHistory.new(order_params)
+	# @new_address = OrderHistories.new(order_params)
 
+  @order_history = OrderHistory.new(order_params)
+  @order_history.payment_method.save
+  redirect_to carts_path
 	# if params[:order_histories][:address] ==　"ご自身の住所"
 	# 	@order_input.zipcode  ==  current_customer.zipcode
 	# 	@order_input.address  ==  current_customer.address

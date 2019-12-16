@@ -51,7 +51,7 @@
             </td>
         </tr>
     </table>
-    <div class="important info">
+    <div class="important info mt-5">
         <h5>支払方法</h5>
         <p>
             <%= @payment_method %>
@@ -62,7 +62,10 @@
             <%= @order_history.address %>
             <%= @order_history.name %>
         </p>
-        <%= link_to "購入を確定する", carts_complete_path, class:'btn btn-md btn-primary' %>
+        <%= form_for(@order_history,url: order_histories_path, method: :post) do |f| %>
+        <%= f.hidden_field :order_history_id, :value => @order_history.id %>
+        <%= f.submit "購入を確定する", class:'btn btn-md btn-primary mt-2' %>
+        <% end %>
     </div>
 </div>
 <!-- 注文情報確認画面は複数のカートの情報を扱うので、showページではない。Confirmアクション等を作るのが○
