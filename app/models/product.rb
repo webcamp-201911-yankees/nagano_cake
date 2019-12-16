@@ -1,8 +1,8 @@
 class Product < ApplicationRecord
 	attachment :product_image
 	belongs_to :category
-	has_many :carts, dependent: :destroy
-	has_many :order_details, dependent: :destroy
+	has_many :carts
+	has_many :order_details
 	validates :product_name, presence: true, uniqueness: true
 	validates :caption, presence: true
 	validates :tax_excluded, presence: true

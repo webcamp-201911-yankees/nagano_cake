@@ -25,7 +25,7 @@
 		<tr>
 			<td>注文ステータス　</td>
 			<td>
-				現在 <%= @order_history.order_status %>
+				[現在] <%= @order_history.order_status %>
 			<%= form_for(@order_history) do |f| %>
 				<%= f.select :order_status, OrderHistory.order_statuses.keys, :selected=>OrderHistory.order_statuses[@order_history.order_statuses] %>
 				<%= f.submit "更新", class: "btn btn-lg btn-primary" %>

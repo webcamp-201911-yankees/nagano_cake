@@ -20,6 +20,8 @@ class OrderHistoriesController < ApplicationController
   end
 
   def show
+    @order_history = OrderHistory.find(params[:id])
+    @order_details = OrderDetail.all
   end
 
   def edit

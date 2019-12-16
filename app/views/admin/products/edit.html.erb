@@ -10,29 +10,30 @@
         <div class="col-lg-8">
             <table>
                 <tr>
-                    <td><label>商品名</label></td>
+                    <td>商品名</td>
                     <td>
                         <%= f.text_field :product_name %>
                     </td>
                 </tr>
                 <tr>
-                    <td><label>商品説明</label></td>
+                    <td>商品説明</td>
                     <td>
                         <%= f.text_field :caption %>
                     </td>
                 </tr>
                 <tr>
-                    <td><label>ジャンル</label></td>
+                    <td>ジャンル</td>
                     <td><%= f.collection_select :category_id, Category.all, :id, :name, :prompt => "選択してください" %>
                     </td>
                 <tr>
-                    <td><label>税抜価格</label></td>
+                    <td>税抜価格</td>
                     <td>
                         <%= f.text_field :tax_excluded %>円</td>
                 </tr>
                 <tr>
-                    <td><label>販売ステータス</label></td>
+                    <td>販売ステータス</td>
                     <td>
+                        <div class="badge badge-secondary"><%= @product.sale_status %></div>
                         <%= f.select :sale_status, Product.sale_statuses.keys, :selected=>Product.sale_statuses[@product.sale_status] %>
                     </td>
             </table>
