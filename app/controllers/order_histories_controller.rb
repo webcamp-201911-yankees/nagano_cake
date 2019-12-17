@@ -1,20 +1,23 @@
 class OrderHistoriesController < ApplicationController
   def index
-	@order_index = OrderHistory.all
+    @customer = current_customer
 # 	@order_show = OrderHistory.find(params[:id])
 # end
   end
 
   def create
     @order_history = OrderHistory.new(order_params)
+    @order_history.order_status = "入金待ち"
     @order_history.save
-    @carts = curent_customer.carts
+    @carts = current_customer.carts
     @carts.destroy_all
     redirect_to carts_complete_path
 
   end
 
   def show
+    @order_history = OrderHistory.find(params[:id])
+    @order_details = OrderDetail.all
   end
 
   def edit
@@ -28,7 +31,7 @@ class OrderHistoriesController < ApplicationController
 
   private
   def order_params
-	params.require(:order_history).permit(:payment_method,:customer_id,:zipcode,:address,:name)
+	params.require(:order_history).permit(:payment_method,:customer_id,:zipcode,:address,:name, :order_status)
   end
   def order_detail_params
     params.requiure(:order_detail).permit(:order_history_id,:product_id,:tax_included,:number,:prepare_status)
