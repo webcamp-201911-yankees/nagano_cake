@@ -1,0 +1,30 @@
+<%= render 'layouts/c_header' %>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="container main-visual">
+                <div class="b"><img class="c" src="/assets/img_top.jpg"></div>
+                <div class="b"><img class="c" src="/assets/img_top2.jpg"></div>
+                <div class="b"><img class="c" src="/assets/img_top3.jpg"></div>
+            </div>
+        </div>
+        <div class="container-fluid bg-3 text-center">
+            <h3>商品一覧</h3>
+            　　　　　　　<div class="row">
+                <% @products2.each do |product| %>
+                <% if product.sale_status == "販売中" %>
+                <div class="col-sm-3">
+                    <%= link_to product_path(product.id) do %>
+                    <%= attachment_image_tag product, :product_image, :fill, 200, 150, fallback: "no_image.jpg", :width => "200", :height => "150" %><br>
+                    <%= product.product_name %>
+                    <%= product.tax_excluded %>円
+                    <% end %>
+                </div>
+                <% end %>
+                <% end %>
+            </div>
+            <div class="text-center">
+                <%# paginate @products2 %>
+            </div>
+        </div>
+    </div>
