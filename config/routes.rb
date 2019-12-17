@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     passwords: 'admins/passwords'
   }
 
-
+  get 'products/:category_id/search', to:"products#search" , as:'products_search'
   resources :customers
   resources :products
   resources :shipping_addresses
