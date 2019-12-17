@@ -38,12 +38,12 @@ class CartsController < ApplicationController
       end
       if  params[:selected_button] == "another_address"
       	@shipping_address =  ShippingAddress.find(params[:order_history][:customer_id])
-      	@order_history.address = @shipping_address.shipping_address
+      	@order_history.address = @shipping_address.full_address
       end
 	  if  params[:selected_button] == "new_customer_address"
-	  	@order_history.zipcode = @new_address.shipping_zipcode
-      	@order_history.address = @new_address.shipping_address
-      	@order_history.name = @new_address.name
+	  	@order_history.zipcode = params[:order_history][:shipping_address][:shipping_zipcode]
+      	@order_history.address = params[:order_history][:shipping_address][:shipping_address]
+      	@order_history.name = params[:order_history][:shipping_address][:name]
       end
     end
 
