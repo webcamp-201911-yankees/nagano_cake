@@ -22,8 +22,8 @@
     <label>
         <%= radio_button_tag("selected_button","another_address") %>登録済住所から選択
     </label><br>
-    <%= f.label :customer_id %>
-    <%= f.collection_select :customer_id, current_customer.shipping_addresses,:id, :shipping_address %><br>
+    <%= f.label :customer_id , class:'sr-only' %>
+    <%= f.collection_select :customer_id, current_customer.shipping_addresses,:id, :full_address  %><br>
     <!--     customer_idの箇所はローカル変数fにあるカラムであればどれでも○
  -->
     <!-- idをビューから、コントローラに渡している -->
