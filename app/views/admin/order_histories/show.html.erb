@@ -25,11 +25,11 @@
 		<tr>
 			<td>注文ステータス　</td>
 			<td>
-				現在 <%= @order_history.order_status %>
-			<%= form_for(@order_history) do |f| %>
-				<%= f.select :order_status, OrderHistory.order_statuses.keys, :selected=>OrderHistory.order_statuses[@order_history.order_status] %>
-				<%= f.submit "更新", class: "btn btn-lg btn-primary" %>
-			<% end %>
+				<div class="p-1 mb-1 bg-light text-dark">現在 ： <%= @order_history.order_status %></div>
+				<%= form_for(@order_history) do |f| %>
+					<%= f.select :order_status, OrderHistory.order_statuses.keys, :selected=>OrderHistory.order_statuses[@order_history.order_status] %>
+					<%= f.submit "更新", class: "btn btn-sm btn-primary" %>
+				<% end %>
 			</td>
 		</tr>
 	</table>
@@ -43,19 +43,19 @@
 		</tr>
 		<tr>
 		<% total = 0 %>
-		<% @order_details each do |detail| %>
+		<% @order_detail.each do |detail| %>
 			<td><%= detail.product.product_name %></td>
 			<td><%= detail.tax_included %></td>
 			<td><%= detail.number %></td>
 			<td><%= price = detail.tax_included*detail.number %></td>
 			<td>
-				現在 <%= detail.prepare_status %>
-				<%= form_for(@order_details) do |f| %>
-					<%= f.select :prepare_status, OrderDetails.prepare_statuses.keys, :selected=>OrderDetails.prepare_statuses[@order_details.prepare_status] %>
-					<%= f.submit "更新", class: "btn btn-lg btn-primary" %>
+				<span class="badge badge-info"><%= detail.prepare_status %></span>
+				<%= form_for(details) do |f| %>
+					<%= f.select :prepare_status, OrderDetail.prepare_statuses.keys, :selected=>OrderDetail.prepare_statuses[@order_detail.prepare_status] %>
+					<%= f.submit "更新", class: "btn btn-sm btn-primary" %>
 				<% end %>
 			</td>
-		<% total = price * detail.number + total %>
+			<% total = price * detail.number + total %>
 		<% end %>
 		</tr>
 	</table>

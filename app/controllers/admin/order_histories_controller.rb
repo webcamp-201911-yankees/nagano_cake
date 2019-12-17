@@ -7,7 +7,7 @@ class Admin::OrderHistoriesController < ApplicationController
 
   def show
   	@order_history = OrderHistory.find(params[:id])
-  	@order_details = OrderDetail.all
+  	@order_detail = OrderDetail.all
   end
 
   def edit
@@ -17,6 +17,9 @@ class Admin::OrderHistoriesController < ApplicationController
   def update
     order_history = OrderHistory.find(params[:id])
     order_history.update(order_params)
+    redirect_to admin_order_history_path(order_history.id)
+    order_detail = OrderDetail.find(params[:id])
+    order_detail.update(order_params)
     redirect_to admin_order_history_path(order_history.id)
   end
 
