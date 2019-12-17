@@ -2,7 +2,7 @@ class Admin::OrderHistoriesController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-  	@order_histories = OrderHistory.all
+  	@order_history = OrderHistory.all
   end
 
   def show
@@ -13,7 +13,7 @@ class Admin::OrderHistoriesController < ApplicationController
   def edit
     @order_history = OrderHistory.find(params[:id])
   end
- 
+
   def update
     order_history = OrderHistory.find(params[:id])
     order_history.update(order_params)
@@ -22,6 +22,6 @@ class Admin::OrderHistoriesController < ApplicationController
 
   private
   def order_params
-	params.require(:order_history).permit(:payment_method,:order_status,:customer_id,:shipping_zipcode,:shipping_address,:name, :shipping_fee)
+	params.require(:order_history).permit(:payment_method, :order_status, :customer_id, :shipping_zipcode, :shipping_address, :name, :shipping_fee)
   end
 end

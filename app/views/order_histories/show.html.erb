@@ -16,7 +16,7 @@
 		</tr>
 		<tr>
 			<td>支払方法　</td>
-			<td><%= @order_history.payment_method %></td>
+			<td><%= @order_history.payment_method_i18n %></td>
 		</tr>
 		<tr>
 			<td>注文ステータス　</td>
@@ -33,7 +33,7 @@
 		</tr>
 		<tr>
 		<% total = 0 %>
-		<% @order_details each do |detail| %>
+		<% @order_details.each do |detail| %>
 			<td><%= detail.product.product_name %></td>
 			<td><%= detail.tax_included %></td>
 			<td><%= detail.number %></td>

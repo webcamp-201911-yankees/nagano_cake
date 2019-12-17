@@ -18,9 +18,13 @@
 			<%= order_index.address %><br>
 			<%= order_index.name %>
 		</td>
-		<td></td>
-		<td><%= order_index.total_price %></td>
-		<td><%= link_to "表示する", order_history_path(order_index.id), class:'btn btn-md btn-primary' %></td>
+		<td>
+			
+		</td>
+		<td><%= order_index.total_price.to_i + 800 %>円</td>
+		<td>
+			<%= link_to "表示する", order_history_path(order_index.id), class:'btn btn-md btn-primary' %>
+		</td>
 	  </tr>
     <% end %>
 </table>

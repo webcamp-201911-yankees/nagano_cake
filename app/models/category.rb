@@ -1,5 +1,5 @@
 class Category < ApplicationRecord
-	has_many :products, dependent: :destroy
+	has_many :products
 	validates :name, presence: true, uniqueness: true
 	enum status: { 無効: 0, 有効: 1}
 

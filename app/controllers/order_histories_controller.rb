@@ -21,9 +21,13 @@ class OrderHistoriesController < ApplicationController
   end
 
   def edit
+    @order_history = OrderHistory.find(params[:id])
   end
 
   def update
+    order_history = OrderHistory.find(params[:id])
+    order_history.update(order_params)
+    redirect_to admin_order_history_path(order_history.id)
   end
 
   def complete
@@ -31,7 +35,7 @@ class OrderHistoriesController < ApplicationController
 
   private
   def order_params
-	params.require(:order_history).permit(:payment_method,:customer_id,:zipcode,:address,:name, :order_status)
+	params.require(:order_history).permit(:payment_method,:customer_id,:zipcode,:address,:name, :order_status, :total_price)
   end
   def order_detail_params
     params.requiure(:order_detail).permit(:order_history_id,:product_id,:tax_included,:number,:prepare_status)
