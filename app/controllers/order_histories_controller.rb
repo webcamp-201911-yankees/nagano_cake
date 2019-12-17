@@ -8,7 +8,7 @@ class OrderHistoriesController < ApplicationController
   def create
     @order_history = OrderHistory.new(order_params)
     @order_history.save
-    @carts = curent_customer.carts
+    @carts = current_customer.carts
     @carts.destroy_all
     redirect_to carts_complete_path
 
