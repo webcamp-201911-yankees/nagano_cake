@@ -1,6 +1,16 @@
 class ProductsController < ApplicationController
   def index
   	@products = Product.all
+    @categories = Category.all
+  end
+
+  def index2
+  end
+
+  def search
+    @products2 = Product.where(category_id: params[:category_id])
+    @categories = Category.all
+    render :index2
   end
 
   def new

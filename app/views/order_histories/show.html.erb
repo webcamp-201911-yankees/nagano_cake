@@ -33,7 +33,7 @@
 		</tr>
 		<tr>
 		<% total = 0 %>
-		<% @order_details each do |detail| %>
+		<% @order_details.each do |detail| %>
 			<td><%= detail.product.product_name %></td>
 			<td><%= detail.tax_included %></td>
 			<td><%= detail.number %></td>
