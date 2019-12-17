@@ -8,9 +8,9 @@ class OrderHistoriesController < ApplicationController
   def create
     @order_history = OrderHistory.new(order_params)
     @order_history.save
-
-    @order_detail = OrderDetail.new()
-    redirect_to carts_path
+    @carts = curent_customer.carts
+    @carts.destroy_all
+    redirect_to carts_complete_path
 
   end
 
@@ -32,5 +32,5 @@ class OrderHistoriesController < ApplicationController
   end
   def order_detail_params
     params.requiure(:order_detail).permit(:order_history_id,:product_id,:tax_included,:number,:prepare_status)
-
+  end
 end
