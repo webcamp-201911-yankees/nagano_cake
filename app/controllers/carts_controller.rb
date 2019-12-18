@@ -45,6 +45,8 @@ class CartsController < ApplicationController
       	@order_history.address = params[:order_history][:shipping_address][:shipping_address]
       	@order_history.name = params[:order_history][:shipping_address][:name]
       end
+
+      @order_details = OrderDetail.new
     end
 
     def complete
