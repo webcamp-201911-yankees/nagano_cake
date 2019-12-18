@@ -62,16 +62,16 @@
     <table>
 		<tr>
 			<td>商品合計</td>
-			<td><%= total %>円</td>
+			<td><%= @order_history.total_price %>円</td>
 		</tr>
 		<tr>
 			<td>送料</td>
-			<td>800円</td>
-				<!--<%= @order_history.shipping_fee %>-->
+			<td><%= @order_history.shipping_fee %>円</td>
+				<!---->
 		</tr>
 		<tr>
 			<td>請求金額合計</td>
-			<td><%= total + 800 %>円</td>
+			<td><%= @order_history.total_price.to_i + @order_history.shipping_fee %>円</td>
 				<!--<%= total %>.to_i + <%= @order_history.shipping_fee %>.to_i-->
 		</tr>
 	</table>

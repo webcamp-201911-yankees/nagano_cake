@@ -8,6 +8,7 @@ class Admin::OrderHistoriesController < ApplicationController
   def show
   	@order_history = OrderHistory.find(params[:id])
   	@order_detail = OrderDetail.all
+    @order_history.shipping_fee = 800
   end
 
   def edit
@@ -25,6 +26,6 @@ class Admin::OrderHistoriesController < ApplicationController
 
   private
   def order_params
-	params.require(:order_history).permit(:payment_method, :order_status, :customer_id, :shipping_zipcode, :shipping_address, :name, :shipping_fee)
+	params.require(:order_history).permit(:payment_method, :order_status, :customer_id, :shipping_zipcode, :shipping_address, :name, :shipping_fee, :total_price)
   end
 end
