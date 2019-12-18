@@ -2,7 +2,7 @@
 <div class= "container">
 <h4>注文履歴一覧</h4>
 
-<table>
+<table class="table  table-bordered">
 	<tr>
 		<th>注文日</th>
 		<th>配送先</th>
@@ -10,13 +10,24 @@
 		<th>支払い金額</th>
 		<th>注文詳細</th>
 	</tr>
-	<%= @order_index.each do |order_index| %>
+	<% @orders.each do |order_index| %>
+	<% details = OrderDetail.where(order_history_id: order_index.id) %>
 	  <tr>
-		<td><%= order_index.created_at %></td>
-		<td><%= order_index.address %></td>
-		<td><%= order_details(product_id).product_name%></td>
-		<td><%= order_index.total_price %></td>
-		<td><%= link_to "表示する", order_history_path, class:'btn btn-md btn-primary' %></td>
+	  <tr>
+		<td><%= order_index.created_at.strftime('%Y/%m/%d') %></td>
+		<td>
+			〒<%= order_index.zipcode %><br>
+			<%= order_index.address %><br>
+			<%= order_index.name %>
+		</td>
+
+		<td>
+			<% details.each do |detail| %>
+			<%= detail.product.product_name %><br><% end %>
+		</td>
+		<td><%= order_index.total_price.to_i + 800 %></td>
+
+		<td><%= link_to "表示する", order_history_path(order_index.id), class:'btn btn-md btn-primary' %></td>
 	  </tr>
     <% end %>
 </table>
