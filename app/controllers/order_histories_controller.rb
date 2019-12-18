@@ -1,7 +1,6 @@
 class OrderHistoriesController < ApplicationController
   def index
-    @customer = current_customer
-    @orders = OrderHistory.all.order(id: "desc")
+    @orders = current_customer.order_histories.all.order(id: "desc")
   end
 
   def create
@@ -10,8 +9,7 @@ class OrderHistoriesController < ApplicationController
     @order_history.save
     @carts = current_customer.carts
     @carts.destroy_all
-    redirect_to carts_complete_path
-
+    redirect_to carts_complete_path    
   end
 
   def show
@@ -35,10 +33,7 @@ class OrderHistoriesController < ApplicationController
   end
 
   private
-  def order_params
-	params.require(:order_history).permit(:payment_method,:customer_id,:zipcode,:address,:name, :order_status, :total_price, :shipping_fee)
-  end
-  def order_detail_params
-    params.requiure(:order_detail).permit(:order_history_id,:product_id,:tax_included,:number,:prepare_status)
-  end
+    def order_params
+      params.require(:order_history).permit(:payment_method,:customer_id,:zipcode,:address,:name,:order_status,:total_price,:shipping_fee, order_details_attributes:[:order_history_id,:product_id,:tax_included,:number,:prepare_status])
+    end
 end
