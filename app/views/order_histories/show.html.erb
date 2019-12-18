@@ -12,7 +12,7 @@
         <tr>
             <td>配送先</td>
             <td>
-                <%= @order_history.zipcode %><br>
+                〒<%= @order_history.zipcode %><br>
                 <%= @order_history.address %><br>
                 <%= @order_history.name %><br>
             </td>
@@ -26,7 +26,11 @@
         <tr>
             <td>ステータス</td>
             <td>
-                <%= @order_history.order_status %>
+                <% if @order_history.order_status != "入金済み" %>
+                    <%= @order_history.order_status %>
+                <% else %>
+                    <%= @Order_history %>
+                <% end %>
             </td>
         </tr>
     </table>
@@ -36,19 +40,19 @@
             <td>商品合計</td>
             <td>
                 <%#= @order_history.total_price - @order_history.shipping_fee%>
-                <%= @order_history.total_price %>
+                <%= @order_history.total_price %>円
             </td>
         </tr>
         <tr>
             <td>配送料</td>
             <td>
-                <%= @order_history.shipping_fee %>
+                <%= @order_history.shipping_fee %>円
             </td>
         </tr>
         <tr>
             <td>ご請求金額</td>
             <td>
-                <%= @order_history.total_price + @order_history.shipping_fee %>
+                <%= @order_history.total_price + @order_history.shipping_fee %>円
             </td>
         </tr>
     </table>
@@ -78,3 +82,4 @@
         <% end %>
     </table>
 </div>
+
