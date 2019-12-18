@@ -1,4 +1,5 @@
 <%= render 'layouts/a_header' %>
+<div class="container">
 <h2>ジャンル登録/一覧</h2>
 <% if @category.errors.any? %>
 <div id="error_explanation">
@@ -16,7 +17,7 @@
 <%= f.text_field :name ,class:"col-xs"%>
 <%= f.submit '追加',class:"col-xs btn btn-primary"%>
 <% end %>
-<table class="table table-hover">
+<table class="table table-hover mt-3">
     <tbody>
         <tr>
             <th>ジャンル</th>
@@ -44,4 +45,5 @@
         </tr>
         <% end %>
     </tbody>
-</table>
+</table>    
+</div>
