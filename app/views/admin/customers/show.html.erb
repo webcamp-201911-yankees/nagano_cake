@@ -34,4 +34,4 @@
 		</tr>
 	</table>
 	<%= link_to '編集する', edit_admin_customer_path(@customer.id), class: "btn btn-primary" %>
-	<%= link_to '注文履歴一覧を見る', admin_order_histories_path(@customer.id), class: "btn btn-primary" %>
+	<%= link_to '注文履歴一覧を見る', admin_order_histories_search_path(@customer.id), class: "btn btn-primary" %>
