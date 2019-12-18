@@ -10,6 +10,8 @@
 		<th>支払い金額</th>
 		<th>注文詳細</th>
 	</tr>
+
+    <% @total_price = 0 %>
 	<% @orders.each do |order_index| %>
 	<% details = OrderDetail.where(order_history_id: order_index.id) %>
 	  <tr>
@@ -25,7 +27,7 @@
 			<% details.each do |detail| %>
 			<%= detail.product.product_name %><br><% end %>
 		</td>
-		<td><%= order_index.total_price.to_i + 800 %></td>
+ 		<td><%= order_index.total_price.to_i + 800 %></td>
 
 		<td><%= link_to "表示する", order_history_path(order_index.id), class:'btn btn-md btn-primary' %></td>
 	  </tr>

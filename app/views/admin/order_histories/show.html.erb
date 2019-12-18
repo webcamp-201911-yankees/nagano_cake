@@ -50,10 +50,6 @@
 			<td><%= (detail.product.tax_include * detail.number).floor %></td>
 			<td>
 				<span class="badge badge-info"><%= detail.prepare_status %></span>
-				<%= form_for(details) do |f| %>
-					<%= f.select :prepare_status, OrderDetail.prepare_statuses.keys, :selected=>OrderDetail.prepare_statuses[@order_detail.prepare_status] %>
-					<%= f.submit "更新", class: "btn btn-sm btn-primary" %>
-				<% end %>
 			</td>
 		<% end %>
 		</tr>
