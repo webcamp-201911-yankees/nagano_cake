@@ -21,6 +21,7 @@ class OrderHistoriesController < ApplicationController
     @order_history = OrderHistory.find(params[:id])
     @order_details = OrderDetail.where(order_history_id: params[:id])
     @Order_history = "発送待ち"
+    @order_history.shipping_fee = 800
   end
 
   def edit
@@ -38,7 +39,7 @@ class OrderHistoriesController < ApplicationController
 
   private
   def order_params
-	params.require(:order_history).permit(:payment_method,:customer_id,:zipcode,:address,:name, :order_status, :total_price)
+	params.require(:order_history).permit(:payment_method,:customer_id,:zipcode,:address,:name, :order_status, :total_price, :shipping_fee)
   end
   def order_detail_params
     params.requiure(:order_detail).permit(:order_history_id,:product_id,:tax_included,:number,:prepare_status)
