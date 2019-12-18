@@ -1,22 +1,23 @@
 <%= render 'layouts/a_header' %>
 <div class= "container">
 	<h1>注文一覧画面</h1>
-	<table>
+	<table class="table table-hover">
 		<tr>
 			<th>購入日時</th>
 			<th>購入者</th>
 			<th>注文個数</th>
-			<th>ステータス</th>
+			<th>注文ステータス</th>
 		</tr>
-		<%= @order_histories.each do |order_history| %>
+		<% @order_history.each do |order_history| %>
 		<tr>
-
-			<td><%= link_to admin_order_history_path(
-			order_histories.id) do %>
-				<%= order_history.created_at %></td>
-			<td><%= order_history.name %></td>
-			<td><%= aaaaa %></td>
-			<td><%= order_history.order_status %></td>
+			<td>
+			<%= link_to admin_order_history_path(order_history.id) do %>
+				<%= order_history.created_at.strftime('%Y/%m/%d %H:%M') %>
+			<% end %>
+		    </td>
+			<td><%= order_history.customer.last_name %><%= order_history.customer.first_name %></td>
+			<td></td>
+			<td><%= order_history.order_status%></td>
 		</tr>
 		<% end %>
 	</table>

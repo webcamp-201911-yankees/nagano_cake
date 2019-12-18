@@ -36,3 +36,51 @@
   height: 500px;
   width :100%;
 }
+
+フッターの固定のCSS
+.wrapper {
+  min-height: calc(100vh - 70px);
+  background: #fff;
+}
+
+.footer {
+  height: 50px;
+}
+
+/*カテゴリ-検索のCSS*/
+.dropdown {
+  display: flex;
+  float: right;
+}
+
+.menu {
+  width: 300px;
+  text-align: center;
+}
+
+.menu-title {
+  background: #090032;
+  color: #ffffff;
+}
+
+.sub-menu {
+  display: none;
+  background: #B9B9B9;
+  position: relative;
+}
+
+.sub-menu > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 300px;
+}
+
+.sub-menu > ul > li > a {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.menu:hover .sub-menu {
+  display: inline-block;
+}

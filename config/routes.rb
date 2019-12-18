@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     passwords: 'admins/passwords'
   }
 
-
+  get 'products/:category_id/search', to:"products#search" , as:'products_search'
   resources :customers
   resources :products
   resources :shipping_addresses
@@ -30,13 +30,13 @@ Rails.application.routes.draw do
     root :to => 'products#top'
     resources :products
     resources :order_histories
+    get 'order_histories/:customer_id/search', to:"order_histories#search" , as:'order_histories_search'
     resources :customers do
       patch :toggle_status
     end
     resources :categories do
       patch :toggle_status
     end
-    resources :order_histories
   end
 
 

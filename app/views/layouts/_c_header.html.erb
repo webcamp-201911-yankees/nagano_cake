@@ -14,8 +14,8 @@
                     <!-- リンクのみ -->
                     <li>
                         <%= link_to customer_path(current_customer), class: "fas fa-user mr-4 text-light" do %>
-                            <%= current_customer.last_name %>
-                            <%= current_customer.first_name %>さん</a>
+                        <%= current_customer.last_name %>
+                        <%= current_customer.first_name %>さん
                         <% end %>
                     </li>
                     <li>
@@ -45,15 +45,28 @@
                 <%= search_form_for @search, url: products_path do |f| %>
                 <div class="navbar-form navbar-left">
                     <div class="input-group">
-
                         <!--検索対象のカラムを:hoge_contで示す。itemnameだったらitemname_cont-->
                         <%= f.search_field :product_name_cont, class: "form-control col-3 mb-4", placeholder: '検索ワードを入力' %>
                         <span class="input-group-btn">
-                        <%= f.submit "検索", class: 'btn btn-default' %>
+                            <%= f.submit "検索", class: 'btn btn-default' %>
                         </span>
                     </div>
                 </div>
                 <% end %>
+                <div class="dropdown">
+                    <div class="menu">
+                        <div class="menu-title">カテゴリー</div>
+                        <div class="sub-menu">
+                            <% @categories.each do |category| %>
+                            <ul>
+                                <li>
+                                    <%= link_to category.name, products_search_path(category.id) %>
+                                </li>
+                            </ul>
+                            <% end %>
+                        </div>
+                    </div>
+                </div>
             </dl>
         </header>
     </div>

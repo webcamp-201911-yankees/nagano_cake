@@ -64,23 +64,20 @@
         </p>
 
         <%= form_for(@order_history,url: order_histories_path, method: :post) do |f| %>
-        <%= f.hidden_field :payment_method, :value => @order_history.payment_method %>
-        <%= f.hidden_field :customer_id, :value => current_customer.id %>
-        <%= f.hidden_field :zipcode, :value => @order_history.zipcode %>
-        <%= f.hidden_field :address, :value => @order_history.address %>
-        <%= f.hidden_field :name, :value => @order_history.name %>
-        <%= f.fields_for :order_details do |dt| %>
-        <% pp dt.object %>
-        <%= dt.hidden_field :order_history_id%>
-        <%= dt.hidden_field :product_id %>
-        <%= dt.hidden_field :tax_included%>
-        <%= dt.hidden_field :number %>
-        <%= dt.hidden_field :prepare_status %>
-
+          <%= f.hidden_field :payment_method, :value => @order_history.payment_method %>
+          <%= f.hidden_field :customer_id, :value => current_customer.id %>
+          <%= f.hidden_field :zipcode, :value => @order_history.zipcode %>
+          <%= f.hidden_field :address, :value => @order_history.address %>
+          <%= f.hidden_field :name, :value => @order_history.name %>
+          <%= f.fields_for :order_details do |dt| %>
+            <%= dt.hidden_field :order_history_id%>
+            <%= dt.hidden_field :product_id %>
+            <%= dt.hidden_field :tax_included%>
+            <%= dt.hidden_field :number %>
+            <%= dt.hidden_field :prepare_status %>
         <% end %>
         <%= f.submit "購入を確定する", class:'btn btn-md btn-primary mt-2' %>
         <% end %>
-
     </div>
 </div>
 <!-- 注文情報確認画面は複数のカートの情報を扱うので、showページではない。Confirmアクション等を作るのが○

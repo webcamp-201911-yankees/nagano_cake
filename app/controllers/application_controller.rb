@@ -29,8 +29,9 @@ class ApplicationController < ActionController::Base
 	before_action :set_search
 
 	def set_search
+		@categories = Category.all
 	    @search = Product.ransack(params[:q])
-	    @results = @search.result
+	    @results = @search.result.page(params[:page]).per(12)
 	end
 
 

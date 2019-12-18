@@ -6,7 +6,7 @@
 			<td>顧客ID　</td>
 			<td><%= @customer.id %></td>
 			<!--<td>ステータス</td>-->
-			<td class="label label-default"><%= @customer.account_status %>会員</td>
+			<td class="badge badge-secondary"><%= @customer.account_status %>会員</td>
 		</tr>
 		<tr>
 			<td>氏名　</td>
@@ -34,4 +34,4 @@
 		</tr>
 	</table>
 	<%= link_to '編集する', edit_admin_customer_path(@customer.id), class: "btn btn-primary" %>
-	<p class="btn btn-primary">注文履歴一覧を見る ＊未完</p>
+	<%= link_to '注文履歴一覧を見る', admin_order_histories_search_path(@customer.id), class: "btn btn-primary" %>

@@ -13,27 +13,27 @@
 		<tr>
 			<td>配送先　</td>
 			<td>
-				<%= @order_history.shipping_zipcode %>
-				<%= @order_history.shipping_address %>
+				〒<%= @order_history.zipcode %>
+				<%= @order_history.address %>
 				<%= @order_history.name %>
 			</td>
 		</tr>
 		<tr>
 			<td>支払方法　</td>
-			<td><%= @order_history.payment_method %></td>
+			<td><%= @order_history.payment_method_i18n %></td>
 		</tr>
 		<tr>
 			<td>注文ステータス　</td>
 			<td>
-				現在 <%= @order_history.order_status %>
-			<%= form_for(@order_history) do |f| %>
-				<%= f.select :order_status, OrderHistory.order_statuses.keys, :selected=>OrderHistory.order_statuses[@order_history.order_statuses] %>
-				<%= f.submit "更新", class: "btn btn-lg btn-primary" %>
-			<% end %>
+				<div class="p-1 mb-1 bg-light text-dark">現在 ： <%= @order_history.order_status %></div>
+				<%= form_for(@order_history) do |f| %>
+					<%= f.select :order_status, OrderHistory.order_statuses.keys, :selected=>OrderHistory.order_statuses[@order_history.order_status] %>
+					<%= f.submit "更新", class: "btn btn-sm btn-primary" %>
+				<% end %>
 			</td>
 		</tr>
 	</table>
-	<table>
+	<table class="table table-hover">
 		<tr>
 			<th>商品名</th>
 			<th>単価(税込)</th>
@@ -43,35 +43,34 @@
 		</tr>
 		<tr>
 		<% total = 0 %>
-		<% @order_details each do |detail| %>
+		<% @order_detail.each do |detail| %>
 			<td><%= detail.product.product_name %></td>
 			<td><%= detail.tax_included %></td>
 			<td><%= detail.number %></td>
-			<td><%= price = detail.tax_included*detail.number %></td>
+			<td><%= (detail.product.tax_include * detail.number).floor %></td>
 			<td>
-			    <select required>
-					<option value= "製作待ち">製作待ち</option>
-					<option value= "製作中">製作中</option>
-					<option value= "製作完了">製作完了</option>
-			    </select>
+				<span class="badge badge-info"><%= detail.prepare_status %></span>
+				<%= form_for(details) do |f| %>
+					<%= f.select :prepare_status, OrderDetail.prepare_statuses.keys, :selected=>OrderDetail.prepare_statuses[@order_detail.prepare_status] %>
+					<%= f.submit "更新", class: "btn btn-sm btn-primary" %>
+				<% end %>
 			</td>
-		<% total = price * detail.number + total %>
 		<% end %>
 		</tr>
 	</table>
     <table>
 		<tr>
 			<td>商品合計</td>
-			<td><%= total %></td>
+			<td><%= @order_history.total_price %>円</td>
 		</tr>
 		<tr>
 			<td>送料</td>
-			<td>800</td>
-				<!--<%= @order_history.shipping_fee %>-->
+			<td><%= @order_history.shipping_fee %>円</td>
+				<!---->
 		</tr>
 		<tr>
 			<td>請求金額合計</td>
-			<td><%= total + 800 %></td>
+			<td><%= @order_history.total_price.to_i + @order_history.shipping_fee %>円</td>
 				<!--<%= total %>.to_i + <%= @order_history.shipping_fee %>.to_i-->
 		</tr>
 	</table>
