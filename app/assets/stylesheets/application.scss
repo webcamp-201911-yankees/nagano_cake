@@ -37,7 +37,15 @@
   width :100%;
 }
 
+フッターの固定のCSS
+.wrapper {
+  min-height: calc(100vh - 70px);
+  background: #fff;
+}
 
+.footer {
+  height: 50px;
+}
 
 /*カテゴリ-検索のCSS*/
 .dropdown {

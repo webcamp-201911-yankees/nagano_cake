@@ -1,4 +1,4 @@
 <%= render 'layouts/a_header' %>
-<h2>管理者画面 </h2>
-<h2>本日の注文件数</h2>
-<p><%= @order_histories.count%></p>
+
+<h1>管理者画面 </h1>
+<h2>本日の注文件数   <%= link_to @order_histories.count, admin_order_histories_path %>   件</h2>
