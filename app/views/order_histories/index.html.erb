@@ -10,7 +10,7 @@
 		<th>支払い金額</th>
 		<th>注文詳細</th>
 	</tr>
-	<% @customer.order_histories.each do |order_index| %>
+	<% @orders.each do |order_index| %>
 	<% details = OrderDetail.where(order_history_id: order_index.id) %>
 	  <tr>
 	  <tr>
