@@ -13,7 +13,7 @@ class OrderHistory < ApplicationRecord
               product_id: cart.product_id,
               tax_included: cart.product.tax_include,
               number: cart.number,
-              prepare_status: '製作待ち'
+              prepare_status: "製作待ち"
             )
         order_details << order_detail
       end
