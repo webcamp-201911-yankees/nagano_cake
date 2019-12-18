@@ -9,6 +9,7 @@
 			<th>注文ステータス</th>
 		</tr>
 		<% @order_history2.each do |order_history| %>
+		<% details = OrderDetail.where(order_history_id: order_history.id) %>
 		<tr>
 			<td>
 			<%= link_to admin_order_history_path(order_history.id) do %>
@@ -16,7 +17,14 @@
 			<% end %>
 		    </td>
 			<td><%= order_history.customer.last_name %><%= order_history.customer.first_name %></td>
-			<td></td>
+			<td>
+			<% total = 0 %>
+			<% details.each do |detail| %>
+				<% detail.number %>
+				<% total = detail.number + total %>
+			<% end %>
+			<%= total %>
+			</td>
 			<td><%= order_history.order_status%></td>
 		</tr>
 		<% end %>
