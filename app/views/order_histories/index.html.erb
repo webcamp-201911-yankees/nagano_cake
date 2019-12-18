@@ -10,16 +10,18 @@
 		<th>支払い金額</th>
 		<th>注文詳細</th>
 	</tr>
-	<% @customer.order_histories.each do |order_index| %>
+	<%# @customer.order_histories.each do |order_index| %>
+	<% @orders.each do |order_index| %>
 	  <tr>
-		<td><%= order_index.created_at %></td>
+	  <tr>
+		<td><%= order_index.created_at.strftime('%Y/%m/%d') %></td>
 		<td>
 			〒<%= order_index.zipcode %><br>
 			<%= order_index.address %><br>
 			<%= order_index.name %>
 		</td>
 		<td></td>
-		<td><%= order_index.total_price %></td>
+		<td><%= order_index.total_price + 800 %></td>
 		<td><%= link_to "表示する", order_history_path(order_index.id), class:'btn btn-md btn-primary' %></td>
 	  </tr>
     <% end %>

@@ -1,61 +1,80 @@
 <%= render 'layouts/c_header' %>
-<div class= "container">
-	<h1>注文履歴詳細</h1>
-	<table>
-		<tr>
-			<td>注文日　</td>
-			<td><%= @order_history.created_at %></td>
-		</tr>
-		<tr>
-			<td>配送先　</td>
-			<td>
-				<%= @order_history.zipcode %>
-				<%= @order_history.address %>
-				<%= @order_history.name %>
-			</td>
-		</tr>
-		<tr>
-			<td>支払方法　</td>
-			<td><%= @order_history.payment_method %></td>
-		</tr>
-		<tr>
-			<td>注文ステータス　</td>
-			<td>現在 <%= @order_history.order_status %></td>
-		</tr>
-	</table>
-	<table>
-		<tr>
-			<th>商品名</th>
-			<th>単価(税込)</th>
-			<th>数量</th>
-			<th>小計</th>
-			<!--<th>製作ステータス</th>-->
-		</tr>
-		<tr>
-		<% total = 0 %>
-		<% @order_details.each do |detail| %>
-			<td><%= detail.product.product_name %></td>
-			<td><%= detail.tax_included %></td>
-			<td><%= detail.number %></td>
-			<td><%= price = detail.tax_included*detail.number %></td>
-		<% total = price * detail.number + total %>
-		<% end %>
-		</tr>
-	</table>
-    <table>
-		<tr>
-			<td>商品合計</td>
-			<td><%= total %></td>
-		</tr>
-		<tr>
-			<td>送料</td>
-			<td>800</td>
-				<!--<%= @order_history.shipping_fee %>-->
-		</tr>
-		<tr>
-			<td>ご請求額</td>
-			<td><%= total + 800 %></td>
-				<!--<%= total %>.to_i + <%= @order_history.shipping_fee %>.to_i-->
-		</tr>
-	</table>
+<div class="container">
+    <h1>注文履歴詳細</h1>
+    <h3>注文情報</h3>
+    <table class="table table-bordered">
+        <tr>
+            <td>注文日</td>
+            <td>
+                <%= @order_history.created_at.strftime('%Y/%m/%d') %>
+            </td>
+        </tr>
+        <tr>
+            <td>配送先</td>
+            <td>
+                <%= @order_history.zipcode %><br>
+                <%= @order_history.address %><br>
+                <%= @order_history.name %><br>
+            </td>
+        </tr>
+        <tr>
+            <td>支払方法</td>
+            <td>
+                <%= @order_history.payment_method_i18n %>
+            </td>
+        </tr>
+        <tr>
+            <td>ステータス</td>
+            <td>
+                <%= @order_history.order_status %>
+            </td>
+        </tr>
+    </table>
+    <h3>請求情報</h3>
+    <table class="table table-bordered">
+        <tr>
+            <td>商品合計</td>
+            <td>
+                <%#= @order_history.total_price - @order_history.shipping_fee%>
+                <%= @order_history.total_price %>
+            </td>
+        </tr>
+        <tr>
+            <td>配送料</td>
+            <td>
+                <%= @order_history.shipping_fee %>
+            </td>
+        </tr>
+        <tr>
+            <td>ご請求金額</td>
+            <td>
+                <%= @order_history.total_price + @order_history.shipping_fee %>
+            </td>
+        </tr>
+    </table>
+    <h3>注文内容</h3>
+    <table class="table table-bordered">
+        <tr>
+            <th>商品</th>
+            <th>単価(税込)</th>
+            <th>個数</th>
+            <th>小計</th>
+        </tr>
+        <% (@order_details).each do |detail| %>
+        <% total=0 %>
+        <tr>
+        <td class="align-middle">
+            <%= detail.product.product_name %>
+        </td>
+        <td class="align-middle">
+            <%= detail.product.tax_include.floor %>
+        <td class="align-middle">
+            <%= detail.number.floor %>
+        </td>
+        <td class="align-middle">
+            <%= (detail.product.tax_include * detail.number).floor %>
+        </td>
+        </tr>
+        <% end %>
+    </table>
 </div>
