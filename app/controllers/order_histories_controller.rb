@@ -1,6 +1,8 @@
 class OrderHistoriesController < ApplicationController
   def index
-    @customer = current_customer
+    #@customer = current_customer
+    customer_id = current_customer.id
+    @orders = OrderHistory.all.order(id: "desc")
 # 	@order_show = OrderHistory.find(params[:id])
 # end
   end
@@ -17,7 +19,7 @@ class OrderHistoriesController < ApplicationController
 
   def show
     @order_history = OrderHistory.find(params[:id])
-    @order_detail = OrderDetail.all
+    @order_details = OrderDetail.where(order_history_id: params[:id])
     @Order_history = "発送待ち"
   end
 
