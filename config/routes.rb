@@ -30,6 +30,7 @@ Rails.application.routes.draw do
     root :to => 'products#top'
     resources :products
     resources :order_histories
+    get 'order_histories/:customer_id/search', to:"order_histories#search" , as:'order_histories_search'
     resources :customers do
       patch :toggle_status
     end

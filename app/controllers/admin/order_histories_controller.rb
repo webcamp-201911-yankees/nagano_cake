@@ -5,6 +5,14 @@ class Admin::OrderHistoriesController < ApplicationController
   	@order_history = OrderHistory.all.order(id: "DESC")
   end
 
+  def index2
+  end
+
+  def search
+    @order_history2 = OrderHistory.where(customer_id: params[:customer_id]).order(id: "DESC")
+    render :index2
+  end
+
   def show
   	@order_history = OrderHistory.find(params[:id])
   	@order_detail = OrderDetail.all

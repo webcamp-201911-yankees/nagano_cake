@@ -47,7 +47,7 @@
 			<td><%= detail.product.product_name %></td>
 			<td><%= detail.tax_included %></td>
 			<td><%= detail.number %></td>
-			<td><%= price = detail.tax_included*detail.number %></td>
+			<td><%= (detail.product.tax_include * detail.number).floor %></td>
 			<td>
 				<span class="badge badge-info"><%= detail.prepare_status %></span>
 				<%= form_for(details) do |f| %>
@@ -55,7 +55,6 @@
 					<%= f.submit "更新", class: "btn btn-sm btn-primary" %>
 				<% end %>
 			</td>
-			<% total = price * detail.number + total %>
 		<% end %>
 		</tr>
 	</table>
