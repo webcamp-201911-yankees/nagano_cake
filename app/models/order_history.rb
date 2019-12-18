@@ -6,4 +6,5 @@ class OrderHistory < ApplicationRecord
 
 	enum order_status:[:入金待ち, :発送待ち, :発送済み]
 
+
 end

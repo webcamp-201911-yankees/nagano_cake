@@ -1,10 +1,7 @@
 class OrderHistoriesController < ApplicationController
   def index
-    #@customer = current_customer
-    customer_id = current_customer.id
+    @customer = current_customer
     @orders = OrderHistory.all.order(id: "desc")
-# 	@order_show = OrderHistory.find(params[:id])
-# end
   end
 
   def create
