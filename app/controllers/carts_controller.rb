@@ -49,7 +49,6 @@ class CartsController < ApplicationController
       end
 
         @order_history.make_order_details(current_customer.carts)
-        pp @order_history.order_details
     end
 
     def complete

@@ -11,7 +11,7 @@ class OrderHistoriesController < ApplicationController
     @order_history.save
     @carts = current_customer.carts
     @carts.destroy_all
-    redirect_to carts_complete_path    
+    redirect_to carts_complete_path
   end
 
   def show
