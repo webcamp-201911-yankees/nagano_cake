@@ -1,7 +1,6 @@
 class OrderHistoriesController < ApplicationController
   def index
-    @customer = current_customer
-    @orders = OrderHistory.all.order(id: "desc")
+    @orders = current_customer.order_histories.all.order(id: "desc")
   end
 
   def create
