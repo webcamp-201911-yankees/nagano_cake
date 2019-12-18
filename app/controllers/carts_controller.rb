@@ -31,22 +31,25 @@ class CartsController < ApplicationController
       @new_address = ShippingAddress.new
 
       if params[:selected_button] == "customer_address"
-        @order_history.zipcode = current_customer.zipcode      	
+        @order_history.zipcode = current_customer.zipcode 
       	@order_history.address = current_customer.address
       	@order_history.name = current_customer.last_name + current_customer.first_name
 
       end
       if  params[:selected_button] == "another_address"
       	@shipping_address =  ShippingAddress.find(params[:order_history][:customer_id])
-      	@order_history.address = @shipping_address.full_address
+        @order_history.zipcode = @shipping_address.shipping_zipcode
+        @order_history.address = @shipping_address.shipping_address
+        @order_history.name = @shipping_address.name
       end
-	  if  params[:selected_button] == "new_customer_address"
-	  	@order_history.zipcode = params[:order_history][:shipping_address][:shipping_zipcode]
+      if  params[:selected_button] == "new_customer_address"
+	  	  @order_history.zipcode = params[:order_history][:shipping_address][:shipping_zipcode]
       	@order_history.address = params[:order_history][:shipping_address][:shipping_address]
       	@order_history.name = params[:order_history][:shipping_address][:name]
       end
 
-      @order_details = OrderDetail.new
+        @order_history.make_order_details(current_customer.carts)
+        pp @order_history.order_details
     end
 
     def complete
@@ -72,17 +75,7 @@ class CartsController < ApplicationController
 	end
 
  private
- 	def product_params
-  	  params.require(:product).permit(:product_image, :caption,:product_name,:category_id,:tax_excluded,:sale_status)
-    end
-
     def cart_params
       params.require(:cart).permit(:number,:product_id)
     end
-    def order_params
-	  params.require(:order_history).permit(:payment_method,:customer_id,:zipcode,:address,:name)
-    end
-    def order_details_params
-      params.require(:order_detail).permit(:order_history_id,:product_id,:tax_included,:number,:prepare_status)
-    end
- end
+  end

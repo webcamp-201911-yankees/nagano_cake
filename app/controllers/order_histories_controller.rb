@@ -7,11 +7,11 @@ class OrderHistoriesController < ApplicationController
 
   def create
     @order_history = OrderHistory.new(order_params)
+    @order_history.order_status = "入金待ち"
     @order_history.save
     @carts = current_customer.carts
     @carts.destroy_all
-    redirect_to carts_complete_path
-
+    redirect_to carts_complete_path    
   end
 
   def show
@@ -27,10 +27,7 @@ class OrderHistoriesController < ApplicationController
   end
 
   private
-  def order_params
-	params.require(:order_history).permit(:payment_method,:customer_id,:zipcode,:address,:name)
-  end
-  def order_detail_params
-    params.requiure(:order_detail).permit(:order_history_id,:product_id,:tax_included,:number,:prepare_status)
-  end
+    def order_params
+    params.require(:order_history).permit(:payment_method,:customer_id,:zipcode,:address,:name, order_details_attributes:[:order_history_id,:product_id,:tax_included,:number,:prepare_status])
+    end
 end
