@@ -17,7 +17,6 @@ class OrderHistoriesController < ApplicationController
   def show
     @order_history = OrderHistory.find(params[:id])
     @order_details = OrderDetail.where(order_history_id: params[:id])
-    @Order_history = "発送待ち"
     @order_history.shipping_fee = 800
   end
 
