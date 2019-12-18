@@ -18,7 +18,7 @@
         <% total=0 %>
       <% @carts.each do |cart| %>
         <tr>
-          <td><%= attachment_image_tag cart.product,:product_image, :fill, 60, 60, format: 'jpeg' %></td>
+          <td><%= attachment_image_tag cart.product,:product_image, :fill, 60, 60, format: 'jpeg', fallback: "no_image.jpg", :width => "60", :height => "60" %><%= cart.product.product_name %></td>
           <td><%= price = (cart.product.tax_excluded * 1.1).floor %></td>
           <td><%= form_for(cart,url:cart_path(cart), html: {method: "patch"}) do |f| %>
               <%= f.text_field :number %><%= f.submit "数量を変える" %>
@@ -35,7 +35,7 @@
       </tbody>
     </table>
   <div class="text-right">
-    <%= total %>
+    <h3>合計金額<%= total %>円</h3>
     <%= link_to '買い物を続ける', products_path, class: "btn btn-primary" %>
     <%= link_to '情報入力へ進む', new_cart_path, class: "btn btn-primary" %>
   </div>

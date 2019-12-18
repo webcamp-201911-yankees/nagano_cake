@@ -64,12 +64,13 @@
         </p>
 
         <%= form_for(@order_history,url: order_histories_path, method: :post) do |f| %>
-        <%= f.hidden_field :payment_method, :value => @order_history.payment_method %>
-        <%= f.hidden_field :customer_id, :value => current_customer.id %>
-        <%= f.hidden_field :zipcode, :value => @order_history.zipcode %>
-        <%= f.hidden_field :address, :value => @order_history.address %>
-        <%= f.hidden_field :name, :value => @order_history.name %>
-        <%= f.submit "購入を確定する", class:'btn btn-md btn-primary mt-2' %>
+            <%= f.hidden_field :payment_method, :value => @order_history.payment_method %>
+            <%= f.hidden_field :customer_id, :value => current_customer.id %>
+            <%= f.hidden_field :zipcode, :value => @order_history.zipcode %>
+            <%= f.hidden_field :address, :value => @order_history.address %>
+            <%= f.hidden_field :name, :value => @order_history.name %>
+            <%= f.hidden_field :total_price, :value => @total_price %>
+            <%= f.submit "購入を確定する", class:'btn btn-md btn-primary mt-2' %>
         <% end %>
 
     </div>
