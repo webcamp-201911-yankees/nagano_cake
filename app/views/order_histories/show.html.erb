@@ -9,7 +9,7 @@
 		<tr>
 			<td>配送先　</td>
 			<td>
-				<%= @order_history.zipcode %>
+				〒<%= @order_history.zipcode %>
 				<%= @order_history.address %>
 				<%= @order_history.name %>
 			</td>
@@ -20,7 +20,14 @@
 		</tr>
 		<tr>
 			<td>注文ステータス　</td>
-			<td>現在 <%= @order_history.order_status %></td>
+			<td>
+				現在 ： 
+				<% if @order_history.order_status != "入金済み" %>
+					<%= @order_history.order_status %>
+				<% else %>
+					<%= @Order_history %>
+				<% end %>
+			</td>
 		</tr>
 	</table>
 	<table>
@@ -33,7 +40,7 @@
 		</tr>
 		<tr>
 		<% total = 0 %>
-		<% @order_details.each do |detail| %>
+		<% @order_detail.each do |detail| %>
 			<td><%= detail.product.product_name %></td>
 			<td><%= detail.tax_included %></td>
 			<td><%= detail.number %></td>

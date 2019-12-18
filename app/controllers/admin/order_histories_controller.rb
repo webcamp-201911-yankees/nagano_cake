@@ -2,7 +2,7 @@ class Admin::OrderHistoriesController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-  	@order_history = OrderHistory.all
+  	@order_history = OrderHistory.all.order(id: "DESC")
   end
 
   def show

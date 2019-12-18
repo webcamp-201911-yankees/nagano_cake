@@ -13,7 +13,7 @@
 		<tr>
 			<td>配送先　</td>
 			<td>
-				<%= @order_history.zipcode %>
+				〒<%= @order_history.zipcode %>
 				<%= @order_history.address %>
 				<%= @order_history.name %>
 			</td>
@@ -33,7 +33,7 @@
 			</td>
 		</tr>
 	</table>
-	<table>
+	<table class="table table-hover">
 		<tr>
 			<th>商品名</th>
 			<th>単価(税込)</th>
@@ -62,16 +62,16 @@
     <table>
 		<tr>
 			<td>商品合計</td>
-			<td><%= total %></td>
+			<td><%= total %>円</td>
 		</tr>
 		<tr>
 			<td>送料</td>
-			<td>800</td>
+			<td>800円</td>
 				<!--<%= @order_history.shipping_fee %>-->
 		</tr>
 		<tr>
 			<td>請求金額合計</td>
-			<td><%= total + 800 %></td>
+			<td><%= total + 800 %>円</td>
 				<!--<%= total %>.to_i + <%= @order_history.shipping_fee %>.to_i-->
 		</tr>
 	</table>

@@ -18,6 +18,7 @@ class OrderHistoriesController < ApplicationController
   def show
     @order_history = OrderHistory.find(params[:id])
     @order_detail = OrderDetail.all
+    @Order_history = "発送待ち"
   end
 
   def edit
