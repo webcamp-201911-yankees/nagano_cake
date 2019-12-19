@@ -54,21 +54,20 @@
                             </span>
                         </div>
                     </div>
-                </div>
-                <% end %>
+                    <% end %>
                 <div class="dropdown">
                     <div class="menu">
                         <div class="menu-title">カテゴリー</div>
-                        <div class="sub-menu">
-                            <% @categories.each do |category| %>
-                            <% if category.status =="有効" %>
-                            <ul>
-                                <li>
+                            <div class="sub-menu">
+                                <% @categories.each do |category| %>
+                                <% if category.status =="有効" %>
+                                <ul>
+                                    <li>
                                     <%= link_to category.name, products_search_path(category.id) %>
-                                </li>
-                            </ul>
-                            <% else %>
-                            <% end %>
+                                    </li>
+                                </ul>
+                                <% else %>
+                                    <% end %>
                             <% end %>
                         </div>
                     </div>
