@@ -22,6 +22,8 @@
 
 ## Requirement  
 --使用言語--  
+・HTML
+・CSS
 ・Ruby  
 ・Javascript  
 
