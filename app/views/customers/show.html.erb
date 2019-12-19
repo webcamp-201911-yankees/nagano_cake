@@ -1,54 +1,53 @@
 <%= render 'layouts/c_header' %>
-<div class="container">
+<div class="container mt-5">
     <h3>マイページ</h3>
-    <h4>登録情報
-        <%= link_to "編集する",edit_customer_path(@customer.id), class: 'btn btn-sm btn-primary' %>
+    <h4>登録情報</h4>
+        <%= link_to "編集する",edit_customer_path(@customer.id), class: 'btn btn-sm btn-primary mr-2' %>
         <%= link_to "パスワードを変更する",edit_customer_password_path(@customer.id), class: 'btn btn-sm btn-primary'%>
-    </h4>
-    <table border="1">
+    <table class="table table-bordered my-4">
         <tr>
-            <td>氏名</td>
-            <td>
+            <td class="text-center">氏名</td>
+            <td class="text-center">
                 <%= @customer.last_name %>
                 <%= @customer.first_name %>
             </td>
         </tr>
         <tr>
-            <td>カナ</td>
-            <td>
+            <td class="text-center">カナ</td>
+            <td class="text-center">
                 <%= @customer.last_name_kana %>
                 <%= @customer.first_name_kana %>
             </td>
         </tr>
         <tr>
-            <td>郵便番号</td>
-            <td>
+            <td class="text-center">郵便番号</td>
+            <td class="text-center">
                 <%= @customer.zipcode %>
             </td>
         </tr>
         <tr>
-            <td>住所</td>
-            <td>
+            <td class="text-center">住所</td>
+            <td class="text-center">
                 <%= @customer.address%>
             </td>
         </tr>
         <tr>
-            <td>電話番号</td>
-            <td>
+            <td class="text-center">電話番号</td>
+            <td class="text-center">
                 <%= @customer.phone_number%>
             </td>
         </tr>
         <tr>
-            <td>メールアドレス</td>
-            <td>
+            <td class="text-center">メールアドレス</td>
+            <td class="text-center">
                 <%= @customer.email%>
             </td>
         </tr>
     </table>
     <h4>配送先
-        <%= link_to "一覧を見る",shipping_addresses_path,class: 'btn btn-sm btn-primary'%>
+        <%= link_to "一覧を見る",shipping_addresses_path,class: 'btn btn-sm btn-primary ml-2 mb-2'%>
     </h4>
     <h4>注文履歴
-        <%= link_to "一覧を見る",order_histories_path,class: 'btn btn-sm btn-primary'%>
+        <%= link_to "一覧を見る",order_histories_path,class: 'btn btn-sm btn-primary ml-2'%>
     </h4>
 </div>
