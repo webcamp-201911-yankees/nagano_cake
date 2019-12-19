@@ -51,7 +51,7 @@ bundel installを行う
 ・git clone https://github.com/  
 ・cd nagano_cake  
 ・rails db:maigrate    
-r・ails s -b 0.0.0.0  
+・rails s -b 0.0.0.0  
   
 ## Author  
 —-製作者—-    
