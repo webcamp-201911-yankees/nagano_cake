@@ -1,13 +1,13 @@
 <%= render 'layouts/a_header' %>
 <div class="container">
     <div class="row">
-        <div class="col-lg-4">
+        <div class="col-lg-4 mt-1">
             <h1>商品編集画面</h1>
             <%= attachment_image_tag @product, :product_image, :fill, 300,300, format: "jpeg", class: "pull-left profile-img", fallback: "no_image.jpg", :width => "300", :height => "300" %>
             <%= form_for(@product) do |f| %>
-            <%= f.attachment_field :product_image, class: "btn btn-lg btn-block btn-primary" %>
+            <%= f.attachment_field :product_image, class: "btn btn-sm btn-block btn-primary mb-1" %>
         </div>
-        <div class="col-lg-8 mt-3">
+        <div class="col-lg-8 mt-5">
             <table>
                 <tr>
                     <td><label>商品名</label></td>

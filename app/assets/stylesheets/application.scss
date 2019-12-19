@@ -68,8 +68,11 @@ nav{
 .sub-menu {
   display: none;
   background: #B9B9B9;
-  position: relative;
-}
+  position: absolute;
+  left: 0px;
+  z-index: 2;
+  opacity:0.9;
+  }
 
 .sub-menu > ul {
   list-style: none;
