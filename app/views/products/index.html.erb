@@ -12,7 +12,8 @@
             <h3>商品一覧</h3>
             　　　　　　　<div class="row">
                 <% @results.each do |product| %>
-                <% if product.sale_status == "販売中" %>
+                <% category = Category.where(id: product.category_id) %>
+                <% if product.category.status =="有効" && product.sale_status == "販売中" %>
                 <div class="col-sm-3">
                     <%= link_to product_path(product.id) do %>
                     <%= attachment_image_tag product, :product_image, :fill, 200, 150, fallback: "no_image.jpg", :width => "200", :height => "150" %><br>
