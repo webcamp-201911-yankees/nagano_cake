@@ -19,14 +19,16 @@
 // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import "bootstrap";
 
+/*ヘッダーのcss*/
+nav{
+  background-color: #fef4e2;
+}
+
 .container-fluid{
 	margin: 0 auto;
-	width: 1080px;
+	width: 80%;
 }
-.navbar-brand p{
-	color: #fff;
-	font-size: 40px;
-}
+
 .navbar{
 	margin-bottom: 0px;
 }
@@ -54,7 +56,7 @@
 }
 
 .menu {
-  width: 300px;
+  width: 400px;
   text-align: center;
 }
 
@@ -73,7 +75,7 @@
   list-style: none;
   margin: 0;
   padding: 0;
-  width: 300px;
+  width: 400px;
 }
 
 .sub-menu > ul > li > a {

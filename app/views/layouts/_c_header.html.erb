@@ -1,55 +1,58 @@
-<nav class="navbar-inverse bg-success pb-4 mb-5">
+<nav class="navbar-inverse mb-3">
     <!-- //navbarを加えると、枠が丸くなる -->
     <div class="container-fluid">
         <header>
-            <div class="navbar">
-                <div class="navbar-brand mt-3">
-                    <%= link_to products_path do %>
-                    <p>ながのCAKE</p>
-                    <% end %>
-                </div>
+            <div class="navbar justify-content-end 　">
                 <% if  customer_signed_in? %>
                 <!-- 右寄せになる部分 ================ -->
                 <ul class="nav navbar-expand navbar-right">
                     <!-- リンクのみ -->
                     <li>
-                        <%= link_to customer_path(current_customer), class: "fas fa-user mr-4 text-light" do %>
+                        <%= link_to customer_path(current_customer), class: "fas fa-user mr-4 text-dark" do %>
                         <%= current_customer.last_name %>
                         <%= current_customer.first_name %>さん
                         <% end %>
                     </li>
                     <li>
-                        <%= link_to "  Cart", carts_path,  class:'fas fa-cart-arrow-down mr-4 text-light' %>
+                        <%= link_to "  Cart", carts_path,  class:'fas fa-cart-arrow-down mr-4 text-dark' %>
                     </li>
                     <li>
-                        <%= link_to "   Logout", destroy_customer_session_path, method: :delete, class:"fas fa-sign-out-alt text-light" %>
+                        <%= link_to "   Logout", destroy_customer_session_path, method: :delete, class:"fas fa-sign-out-alt text-dark" %>
                     </li>
                 </ul>
                 <!-- ログインしていない時 -->
-                <% else %>
+                        <% else %>
                 <ul class="nav navbar-expand navbar-right">
                     <!-- リンクのみ -->
                     <li>
-                        <%= link_to "    Guest", new_customer_registration_path, class:"fas fa-user mr-4 text-light" %>
+                        <%= link_to "    Guest", new_customer_registration_path, class:"fas fa-user mr-4 text-dark" %>
                     </li>
                     <li>
-                        <%= link_to "   Sign-up", new_customer_registration_path, class:'fas fa-user-plus mr-4 text-light' %>
+                        <%= link_to "   Sign-up", new_customer_registration_path, class:'fas fa-user-plus mr-4 text-dark' %>
                     </li>
                     <li>
-                        <%= link_to "   Login", new_customer_session_path, class:'fas fa-sign-in-alt text-light' %>
+                        <%= link_to "   Login", new_customer_session_path, class:'fas fa-sign-in-alt text-dark' %>
                     </li>
                 </ul>
-                <% end %>
+                        <% end %>
             </div>
-            <dl class="searchbox">
-                <%= search_form_for @search, url: products_path do |f| %>
-                <div class="navbar-form navbar-left">
-                    <div class="input-group">
+
+            <div class="navbar">
+                <div class="navbar-brand ">
+                    <%= link_to products_path do %>
+                    <%= image_tag "nagano_cake.jpg" %>
+                    <%end%>
+                </div>
+                <dl class="searchbox">
+                    <%= search_form_for @search, url: products_path do |f| %>
+                    <div class="navbar-form navbar-left">
+                        <div class="input-group">
                         <!--検索対象のカラムを:hoge_contで示す。itemnameだったらitemname_cont-->
-                        <%= f.search_field :product_name_cont, class: "form-control col-3 mb-4", placeholder: '検索ワードを入力' %>
-                        <span class="input-group-btn">
-                            <%= f.submit "検索", class: 'btn btn-default' %>
-                        </span>
+                            <%= f.search_field :product_name_cont, class: "form-control col-10 mb-4", placeholder: '検索ワードを入力' %>
+                            <span class="input-group-btn">
+                                <%= f.submit "検索", class: 'btn btn-default' %>
+                            </span>
+                        </div>
                     </div>
                 </div>
                 <% end %>
@@ -69,8 +72,8 @@
                             <% end %>
                         </div>
                     </div>
-                </div>
-            </dl>
+                </dl>
+            </div>
         </header>
     </div>
 </nav>
