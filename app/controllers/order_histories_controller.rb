@@ -9,6 +9,9 @@ class OrderHistoriesController < ApplicationController
     @order_history.save
     @carts = current_customer.carts
     @carts.destroy_all
+    if params[:selected_button] == "new_customer_address"
+      ShippingAddress.create(customer_id: current_customer.id, shipping_zipcode: params[:order_history][:zipcode], shipping_address: params[:order_history][:address], name: params[:order_history][:name])
+    end    
     redirect_to carts_complete_path
   end
 
@@ -26,6 +29,7 @@ class OrderHistoriesController < ApplicationController
   def update
     order_history = OrderHistory.find(params[:id])
     order_history.update(order_params)
+    pp params[:selected_button]
     redirect_to admin_order_history_path(order_history.id)
   end
 

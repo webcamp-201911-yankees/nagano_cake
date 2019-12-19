@@ -1,8 +1,8 @@
 <%= render 'layouts/a_header' %>
-<h1>商品詳細</h1>
 <div class="container">
     <div class="row">
         <div class="col-lg-4">
+            <h1>商品詳細</h1>
             <%= attachment_image_tag @product, :product_image, :fill, 300,300, format: "jpeg", class: "pull-left profile-img", fallback: "no_image.jpg", :width => "300", :height => "300" %>
         </div>
         <div class="col-lg-8">
@@ -39,7 +39,7 @@
                     </td>
                 </tr>
             </table>
-                <%= link_to '編集する', edit_admin_product_path(@product.id), class: "btn btn-primary" %>
+                <%= link_to '編集する', edit_admin_product_path(@product.id), class: "btn btn-sm btn-primary mt-2" %>
         </div>
     </div>
 </div>

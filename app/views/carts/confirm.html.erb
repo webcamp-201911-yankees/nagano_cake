@@ -78,6 +78,7 @@
         <%= dt.hidden_field :prepare_status %>
 
         <% end %>
+        <%= hidden_field_tag :selected_button, @selected_button %>
         <%= f.submit "購入を確定する", class:'btn btn-md btn-primary mt-2' %>
         <% end %>
     </div>

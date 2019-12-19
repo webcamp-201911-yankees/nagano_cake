@@ -7,7 +7,7 @@
             <%= form_for(@product) do |f| %>
             <%= f.attachment_field :product_image, class: "btn btn-lg btn-block btn-primary" %>
         </div>
-        <div class="col-lg-8">
+        <div class="col-lg-8 mt-3">
             <table>
                 <tr>
                     <td><label>商品名</label></td>
@@ -36,7 +36,7 @@
                         <%= f.select :sale_status, Product.sale_statuses.keys, :selected=>Product.sale_statuses[@product.sale_status] %>
                     </td>
             </table>
-            <%= f.submit "変更を保存", class: "btn btn-lg btn-primary" %>
+            <%= f.submit "変更を保存", class: "btn btn-sm btn-primary mt-2" %>
             <% end %>
         </div>
     </div>

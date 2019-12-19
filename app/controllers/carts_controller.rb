@@ -47,7 +47,7 @@ class CartsController < ApplicationController
       	@order_history.address = params[:order_history][:shipping_address][:shipping_address]
       	@order_history.name = params[:order_history][:shipping_address][:name]
       end
-
+        @selected_button = params[:selected_button]
         @order_history.make_order_details(current_customer.carts)
     end
 
