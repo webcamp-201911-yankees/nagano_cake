@@ -1,8 +1,8 @@
 <%= render 'layouts/a_header' %>
-<h1>商品編集画面</h1>
 <div class="container">
     <div class="row">
         <div class="col-lg-4">
+            <h1>商品編集画面</h1>
             <%= attachment_image_tag @product, :product_image, :fill, 300,300, format: "jpeg", class: "pull-left profile-img", fallback: "no_image.jpg", :width => "300", :height => "300" %>
             <%= form_for(@product) do |f| %>
             <%= f.attachment_field :product_image, class: "btn btn-lg btn-block btn-primary" %>

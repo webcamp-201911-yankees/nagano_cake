@@ -11,13 +11,14 @@ class OrderHistoriesController < ApplicationController
     @carts.destroy_all
     if params[:selected_button] == "new_customer_address"
       ShippingAddress.create(customer_id: current_customer.id, shipping_zipcode: params[:order_history][:zipcode], shipping_address: params[:order_history][:address], name: params[:order_history][:name])
-    end    
+    end
     redirect_to carts_complete_path
   end
 
   def show
     @order_history = OrderHistory.find(params[:id])
     @order_details = OrderDetail.where(order_history_id: params[:id])
+    @Order_history = "発送待ち"
     @order_history.shipping_fee = 800
   end
 
