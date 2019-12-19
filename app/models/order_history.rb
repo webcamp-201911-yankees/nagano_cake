@@ -4,7 +4,6 @@ class OrderHistory < ApplicationRecord
 	has_many :order_details
 	accepts_nested_attributes_for :order_details
 	belongs_to :customer
-	accepts_nested_attributes_for :order_details
 	enum order_status:[:入金待ち, :発送待ち, :発送済み]
 
 	def make_order_details(carts)
@@ -13,7 +12,7 @@ class OrderHistory < ApplicationRecord
               product_id: cart.product_id,
               tax_included: cart.product.tax_include,
               number: cart.number,
-              prepare_status: '製作待ち'
+              prepare_status: "製作待ち"
             )
         order_details << order_detail
       end

@@ -26,11 +26,7 @@
         <tr>
             <td>ステータス</td>
             <td>
-                <% if @order_history.order_status != "入金済み" %>
-                    <%= @order_history.order_status %>
-                <% else %>
-                    <%= @Order_history %>
-                <% end %>
+                <%= @order_history.order_status %>
             </td>
         </tr>
     </table>
@@ -52,7 +48,7 @@
         <tr>
             <td>ご請求金額</td>
             <td>
-                <%= @order_history.total_price + @order_history.shipping_fee %>円
+                <%= @order_history.total_price.to_i + @order_history.shipping_fee %>円
             </td>
         </tr>
     </table>
