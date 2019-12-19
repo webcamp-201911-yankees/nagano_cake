@@ -48,7 +48,7 @@
 
 上記記載のライブラリを各フォームからダウンロード後  
 bundel installを行う  
-・git clone https://github.com/  
+・git clone https://github.com/webcamp-201911-yankees/nagano_cake.git  
 ・cd nagano_cake  
 ・rails db:maigrate    
 ・rails s -b 0.0.0.0  
