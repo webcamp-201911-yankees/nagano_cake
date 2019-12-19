@@ -1,5 +1,5 @@
 <%= render 'layouts/a_header' %>
-<div class= "container">
+<div class= "container mt-5">
 	<%= form_for @order_history, url:admin_order_history_path do |f| %>
 	<h1>注文詳細画面</h1>
 	<table>
@@ -30,11 +30,10 @@
 				
 					<%= f.select :order_status, OrderHistory.order_statuses.keys, :selected=>OrderHistory.order_statuses[@order_history.order_status] %>
 					<%= f.submit "更新", class: "btn btn-sm btn-primary" %>
-				
 			</td>
 		</tr>
 	</table>
-	<table class="table table-hover">
+	<table class="table table-hover mt-4">
 		<tr>
 			<th>商品名</th>
 			<th>単価(税込)</th>
