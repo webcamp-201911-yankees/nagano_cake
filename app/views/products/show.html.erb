@@ -1,13 +1,10 @@
 
 <%= render 'layouts/c_header' %>
 <div class="container">
-    <div class="row">
-        <div class="col-lg-2">
-
-        </div>
-        <div class="col-lg-10">
+        <div class="product-img">
             <%= attachment_image_tag @product, :product_image, :fill, 300,300, format: "jpeg", class: "pull-left profile-img", fallback: "no_image.jpg", :width => "300", :height => "300" %>
-
+        </div>
+        <div class="product-text ">
             <h2><%= @product.product_name %></h2>
             <h4>商品説明</h4>
             <%= @product.caption %>
@@ -20,5 +17,4 @@
             <% end %>
             <% end %>
         </div>
-    </div>
 </div>
