@@ -1,4 +1,5 @@
 class OrderHistoriesController < ApplicationController
+    before_action :authenticate_customer!
   def index
     @orders = current_customer.order_histories.all.order(id: "desc")
   end
