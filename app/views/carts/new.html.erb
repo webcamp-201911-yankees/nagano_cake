@@ -27,7 +27,7 @@
     <!--     customer_idの箇所はローカル変数fにあるカラムであればどれでも○
  -->
     <!-- idをビューから、コントローラに渡している -->
-    <label>
+    <label class="mt-4">
         <%= radio_button_tag("selected_button","new_customer_address") %>新しいお届け先
     </label>
     <%= f.fields_for(@new_address) do |na| %>
