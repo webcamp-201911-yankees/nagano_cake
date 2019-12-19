@@ -1,4 +1,5 @@
 <%= render 'layouts/c_header' %>
+<div class="container">
 <h2>配送先登録/一覧</h2>
   <!-- <div class="row"> -->
     <%= form_for(@shipping_addressn) do |f| %>
@@ -7,13 +8,13 @@
       <h4>住所</h4>
       <%= f.text_field :shipping_address ,class:"col-xs"%>
       <h4>宛先</h4>
-      <%= f.text_field :name ,class:"col-xs"%>
+      <%= f.text_field :name ,class:"col-xs mb-2"%><br>
  
       <%= f.submit '登録する',class:"col-xs btn btn-primary"%>
  
     <% end %>
 
-  <table class="table table-hover">
+  <table class="table table-hover mt-4">
     <tbody>
       <tr>
         <th>郵便番号</th>
@@ -37,5 +38,7 @@
       </tr>
     <% end %>
     </tbody>
-  </table>
+  </table>  
+</div>
+
   <!-- </div> -->

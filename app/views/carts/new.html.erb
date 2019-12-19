@@ -27,7 +27,7 @@
     <!--     customer_idの箇所はローカル変数fにあるカラムであればどれでも○
  -->
     <!-- idをビューから、コントローラに渡している -->
-    <label>
+    <label class="mt-4">
         <%= radio_button_tag("selected_button","new_customer_address") %>新しいお届け先
     </label>
     <%= f.fields_for(@new_address) do |na| %>
@@ -40,9 +40,6 @@
         <%= na.text_field :name %>
     </p>
     <% end %>
-<!--     <%= f.hidden_field :zipcode , value: @new_address.shipping_zipcode %>
-    <%= f.hidden_field :address , value: @new_address.shipping_address %>
-    <%= f.hidden_field :name , value: @new_address.name %>     -->
     <%= f.submit "確認画面へ進む",class:'mt-2'%><br>
     <% end %>
 </div>
