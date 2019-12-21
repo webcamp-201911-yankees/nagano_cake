@@ -73,7 +73,7 @@ gem  "factory_bot_rails"
 gem 'faker', '~> 2.0.0'
 gem 'database_cleaner'
 gem 'pry-byebug'
-gem 'ransack'
-gem 'paranoia'
+gem 'ransack' #検索用
+gem 'paranoia' #退会処理用(論理削除)を行う
 gem 'enum_help'
 gem 'rails-i18n'

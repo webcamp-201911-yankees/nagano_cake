@@ -11,7 +11,7 @@ class Customer < ApplicationRecord
   validates :first_name, presence: true
   validates :last_name_kana, presence: true
   validates :first_name_kana, presence: true
-  validates :zipcode, format: {with: /\A[0-9]{7}\z/}
+  validates :zipcode, format: {with: /\A[0-9]{7}\z/} #7桁の数字のみ有効
   validates :address, presence: true
   validates :phone_number, presence: true
 

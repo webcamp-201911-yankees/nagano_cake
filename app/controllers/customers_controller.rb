@@ -20,7 +20,7 @@ class CustomersController < ApplicationController
   def destroy
     customer = Customer.find(params[:id])
     customer.destroy
-    customer.account_status = '無効'
+    customer.account_status = '無効' #admin側で無効状態の表示をするためステータス変更
     customer.save
     redirect_to new_customer_session_path
   end

@@ -28,10 +28,10 @@ class ApplicationController < ActionController::Base
 
 	before_action :set_search
 
-	def set_search
+	def set_search #gemのransack用
 		@categories = Category.all
-	    @search = Product.ransack(params[:q])
-	    @results = @search.result.page(params[:page]).per(12)
+	    @search = Product.ransack(params[:q]) #(params[:q])にはProductに関する検索パラメータが渡される
+	    @results = @search.result.page(params[:page]).per(12) #@search.resultで検索結果が得られる
 	end
 
 

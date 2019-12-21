@@ -1,7 +1,7 @@
 class ShippingAddressesController < ApplicationController
 	  before_action :authenticate_customer!
 	def index
-		@customer = current_customer
+		@customer = current_customer #ログイン中の会員の配送先情報のみ取得するために設定
 		@shipping_addresses = ShippingAddress.all
 		@shipping_addressn = ShippingAddress.new
 	end
@@ -14,7 +14,7 @@ class ShippingAddressesController < ApplicationController
 
 	def create
 		@shipping_address = ShippingAddress.new(shipping_address_params)
-		@shipping_address.customer_id = current_customer.id
+		@shipping_address.customer_id = current_customer.id #配送先に会員idを登録
   	    @shipping_address.save
   	    redirect_to shipping_addresses_path
 	end
