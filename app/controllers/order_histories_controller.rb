@@ -1,12 +1,12 @@
 class OrderHistoriesController < ApplicationController
     before_action :authenticate_customer!
   def index
-    @orders = current_customer.order_histories.all.order(id: "desc")
+    @orders = current_customer.order_histories.all.order(id: "desc") #並びを降順に変更
   end
 
   def create
     @order_history = OrderHistory.new(order_params)
-    @order_history.order_status = "入金待ち"
+    @order_history.order_status = "入金待ち" #初期状態を入金待ちにする。modelでdefaultを設定でも可
     @order_history.save
     @carts = current_customer.carts
     @carts.destroy_all
@@ -19,7 +19,6 @@ class OrderHistoriesController < ApplicationController
   def show
     @order_history = OrderHistory.find(params[:id])
     @order_details = OrderDetail.where(order_history_id: params[:id])
-    @Order_history = "発送待ち"
     @order_history.shipping_fee = 800
   end
 

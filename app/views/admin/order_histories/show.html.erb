@@ -27,7 +27,6 @@
 			<td>注文ステータス　</td>
 			<td>
 				<div class="p-1 mb-1 bg-light text-dark">現在 ： <%= @order_history.order_status %></div>
-				
 					<%= f.select :order_status, OrderHistory.order_statuses.keys, :selected=>OrderHistory.order_statuses[@order_history.order_status] %>
 					<%= f.submit "更新", class: "btn btn-sm btn-primary" %>
 			</td>
