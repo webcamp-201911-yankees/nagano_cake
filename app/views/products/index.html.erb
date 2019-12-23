@@ -11,9 +11,9 @@
         <div class="container-fluid bg-3 text-center mt-5">
             <h3>商品一覧</h3>
             　　　　　　　<div class="row">
-                <% @results.each do |product| %>
-                <% category = Category.where(id: product.category_id) %>
-                <% if product.category.status =="有効" && product.sale_status == "販売中" %>
+                <% @results2.each do |product| %>
+                <%# category = Category.where(id: product.category_id) %>
+                <%# if product.category.status =="有効" && product.sale_status == "販売中" %>
                 <div class="col-sm-3">
 
                     <%= link_to product_path(product.id) do %>
@@ -23,10 +23,9 @@
                     <% end %>
                 </div>
                 <% end %>
-                <% end %>
             </div>
             <div class="text-center">
-                <%= paginate @results %>
+                <%= paginate @results2 %>
             </div>
         </div>
     </div>

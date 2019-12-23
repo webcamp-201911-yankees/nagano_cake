@@ -13,7 +13,7 @@
           <th>ジャンル</th>
           <th>ステータス</th>
         </tr>
-            <% @results.each do |product| %>
+            <% @results1.each do |product| %>
         <tr>
           <td><%=product.id%></td>
           <td>
@@ -28,5 +28,5 @@
             <% end %>
       </tbody>
     </table>
-    <%= paginate @results %>
+    <%= paginate @results1 %>
 </div>

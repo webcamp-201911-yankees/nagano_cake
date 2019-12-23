@@ -27,12 +27,10 @@ class Admin::CategoriesController < ApplicationController
 			render :edit
 		end
 	end
-	def destroy
-		category = Category
-	end
+
+	#カテゴリーの有効・無効を切り替えるためのアクション、アクション内の.toggle_statusはカテゴリーのモデルで定義
 	def toggle_status
 		@category = Category.find(params[:category_id])
-		# binding.pry
 		 @category.update(status: @category.toggle_status)
 		redirect_to admin_categories_path
 	end
