@@ -2,7 +2,7 @@ class Admin::CustomersController < ApplicationController
 	before_action :authenticate_admin!
 
 	def index
-		@customers = Customer.with_deleted
+		@customers = Customer.with_deleted #論理削除されたものも含めてデータをすべて取得できる
 	end
 
 	def show
@@ -22,10 +22,10 @@ class Admin::CustomersController < ApplicationController
 	def toggle_status
 		@customer = Customer.with_deleted.find(params[:customer_id])
 		@customer.update(account_status: @customer.toggle_status)
-		if @customer.account_status == "有効"
-			@customer.restore
+		if @customer.account_status == "有効" #ステータスを有効にしたら論理削除したものを復活させる
+			@customer.restore #論理削除から元に戻す
 		else
-			@customer.destroy
+			@customer.destroy #無効にしたら論理削除
 		end
 		redirect_to edit_admin_customer_path(@customer.id)
 	end

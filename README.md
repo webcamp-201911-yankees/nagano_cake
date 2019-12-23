@@ -1,9 +1,6 @@
 ## Name
 ながのケーキ(ECサイト)
 
-## DEMO
-"hoge"の魅力が直感的に伝えわるデモ動画や図解を載せる
-
 ## Features
 洋菓子を扱う店舗を想定し、顧客の新規登録から購入、退会までの一連の動作に加え、管理者の商品作成から販売、顧客管理までを扱えるように作成された。  管理者、顧客で行える処理は下記の通りである。
 
@@ -25,6 +22,8 @@
 
 ## Requirement  
 --使用言語--  
+・HTML
+・CSS
 ・Ruby  
 ・Javascript  
 
@@ -48,10 +47,10 @@
 
 上記記載のライブラリを各フォームからダウンロード後  
 bundel installを行う  
-・git clone https://github.com/  
+・git clone https://github.com/webcamp-201911-yankees/nagano_cake.git  
 ・cd nagano_cake  
 ・rails db:maigrate    
-r・ails s -b 0.0.0.0  
+・rails s -b 0.0.0.0  
   
 ## Author  
 —-製作者—-    

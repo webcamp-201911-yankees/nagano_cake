@@ -22,7 +22,7 @@
         <th>宛先</th>
         <th></th>
       </tr>
-    <% @customer.shipping_addresses.each do |shipping_addresses| %>
+    <% @customer.shipping_addresses.each do |shipping_addresses| %> <!--ログイン会員の配送先-->
       <tr>
         <td><%=shipping_addresses.shipping_zipcode %></td>
         <td><%=shipping_addresses.shipping_address %></td>
