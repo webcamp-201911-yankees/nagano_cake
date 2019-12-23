@@ -30,8 +30,13 @@ class ApplicationController < ActionController::Base
 
 	def set_search
 		@categories = Category.all
-	    @search = Product.ransack(params[:q])
-	    @results = @search.result.page(params[:page]).per(12)
+		# search1はカテゴリーの有効・無効や商品の販売中・停止を反映した上topページでランサックを用いたワード検索するための記述
+		@search1 = Product.ransack(params[:q])
+		
+		# search2はカテゴリーの有効・無効や商品の販売中・停止を反映した上でカテゴリー検索するための記述
+	    @search2 = Product.joins(:category).where('categories.status = ? AND sale_status = ?', 1, 0).ransack(params[:q])
+	    @results1 = @search1.result.page(params[:page]).per(12)
+	    @results2 = @search2.result.page(params[:page]).per(12)
 	end
 
 
