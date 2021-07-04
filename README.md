@@ -51,9 +51,3 @@ bundel installを行う
 ・cd nagano_cake  
 ・rails db:maigrate    
 ・rails s -b 0.0.0.0  
-  
-## Author  
-—-製作者—-    
-  森本 浩友　柏尾 洋平　川端 雄介　春山 大樹  
-—-所属—-  
-  DMM webcamp受講生  
